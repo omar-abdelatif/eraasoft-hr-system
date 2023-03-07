@@ -22,35 +22,6 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-users"></i>
-                    <p>
-                        {{ __('Users') }}
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Admins</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('Employee.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Employee</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('Manager.index') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Managers</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
                         {{ __('Department') }}
@@ -99,6 +70,35 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
+                        {{ __('Leave') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Weekly Holiday</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Vacation</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Resign Application</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-circle nav-icon"></i>
+                    <p>
                         {{ __('Attendance') }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
@@ -107,7 +107,42 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Child menu</p>
+                            <p>Attendance Form</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Attendance Log</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        {{ __('Users') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Admins</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('Employee.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Employee</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('Manager.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Managers</p>
                         </a>
                     </li>
                 </ul>
