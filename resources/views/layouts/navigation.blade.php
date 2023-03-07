@@ -11,7 +11,7 @@
     </div>
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="overflow: hidden">
             <li class="nav-item">
                 <a href="{{ route('home') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
@@ -29,13 +29,13 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Departments </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Department</p>
@@ -52,13 +52,13 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>All Branches </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Add Branch</p>
@@ -75,19 +75,19 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Weekly Holiday</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Vacation</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Resign Application</p>
@@ -104,16 +104,85 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Attendance Form</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Attendance Log</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-address-card"></i>
+                    <p>
+                        {{ __('Applications') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Weekly Holiday</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Interview</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Resign Application</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-address-card"></i>
+                    <p>
+                        {{ __('Reports') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item ml-4">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Salary Report</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-address-card"></i>
+                            <p>
+                                {{ __('Leave Report') }}
+                                <i class="fas fa-angle-left right mr-4"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview" style="display: none;">
+                            <li class="nav-item ml-4">
+                                <a href="{{ route('users.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Employee Resigns</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="{{ route('Manager.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Attendance Report</p>
                         </a>
                     </li>
                 </ul>
@@ -127,19 +196,19 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="{{ route('users.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Admins</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="{{ route('Employee.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Employee</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a href="{{ route('Manager.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Managers</p>
@@ -155,6 +224,7 @@
                     </p>
                 </a>
             </li>
+
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

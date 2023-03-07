@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('leader');
             $table->string('job_desc');
             $table->string('status');
-            $table->integer('total_salary');
+            $table->integer('salary');
             $table->string('img');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
