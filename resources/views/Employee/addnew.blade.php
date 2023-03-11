@@ -54,8 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Upload Profile Img</label>
-                                <input type="file" id="inputProjectLeader" name="img" class="form-control p-0"
-                                    style="height: 2rem" accept="image/*">
+                                <input type="file" id="inputProjectLeader" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
                             </div>
                         </div>
                     </div>
@@ -92,29 +91,9 @@
                                     <option>Approved</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="card-title">Budget</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
                             <div class="form-group">
-                                <label for="inputEstimatedBudget">Estimated budget</label>
-                                <input type="number" id="inputEstimatedBudget" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputSpentBudget">Total amount spent</label>
-                                <input type="number" id="inputSpentBudget" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEstimatedDuration">Estimated project duration</label>
-                                <input type="number" id="inputEstimatedDuration" class="form-control">
+                                <label for="inputSalary">Employee Salary</label>
+                                <input type="number" id="inputSalary" name="salary" class="form-control">
                             </div>
                         </div>
                     </div>

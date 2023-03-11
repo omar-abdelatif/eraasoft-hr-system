@@ -174,7 +174,13 @@
                             <li class="nav-item ml-4">
                                 <a href="{{ route('users.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Employee Resigns</p>
+                                    <p>Employees Resigns</p>
+                                </a>
+                            </li>
+                            <li class="nav-item ml-4">
+                                <a href="{{ route('users.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Managers Resigns</p>
                                 </a>
                             </li>
                         </ul>
@@ -183,6 +189,35 @@
                         <a href="{{ route('Manager.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Attendance Report</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-money-bill"></i>
+                    <p>
+                        {{ __('Salary') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Employee Salary</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Manager Salary</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                            <p>Payment Methods</p>
                         </a>
                     </li>
                 </ul>
@@ -217,6 +252,14 @@
                 </ul>
             </li>
             <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-circle nav-icon"></i>
+                    <p>
+                        {{ __('Positions') }}
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('about') }}" class="nav-link">
                     <i class="nav-icon far fa-address-card"></i>
                     <p>
@@ -224,6 +267,7 @@
                     </p>
                 </a>
             </li>
+
 
         </ul>
     </nav>
