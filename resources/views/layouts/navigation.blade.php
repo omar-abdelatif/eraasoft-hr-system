@@ -130,13 +130,14 @@
                     <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Weekly Holiday</p>
+                            <p>App. Information</p>
+                            <i class="fas fa-angle-left right mr-4"></i>
                         </a>
                     </li>
                     <li class="nav-item ml-4">
                         <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Interview</p>
+                            <p>Create Interview</p>
                         </a>
                     </li>
                     <li class="nav-item ml-4">
@@ -241,6 +242,35 @@
                         <a href="{{ route('Employee.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Employee</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="{{ route('Manager.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Managers</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                        {{ __('Payment') }}
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item ml-4">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>All Payments</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-4">
+                        <a href="{{ route('Employee.index') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Payments Method</p>
                         </a>
                     </li>
                     <li class="nav-item ml-4">
