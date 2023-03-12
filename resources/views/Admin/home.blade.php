@@ -29,7 +29,7 @@
                                         </span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total Admins</span>
-                                            <span class="info-box-number">410</span>
+                                            <span class="info-box-number">{{$adminCount}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                         </span>
                                         <div class="info-box-content">
                                             <span class="info-box-text">Total Employees</span>
-                                            <span class="info-box-number">13,648</span>
+                                            <span class="info-box-number">{{$employeeCount}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,16 +80,52 @@
                             </div>
                         {{-- </div> --}}
                     </div>
-                    <table class="table borderd-table display align-middle text-center" id="table" data-order='[[ 1, "asc" ]]' data-page-length='25'>
+                    <table class="table borderd-table display align-middle text-center w-100" id="table" data-order='[[ 1, "asc" ]]' data-page-length='25'>
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <td class="text-center">id</td>
-                                <td class="text-center">الإسم</td>
-                                <td class="text-center">رقم التلفون</td>
-                                <td class="text-center">تاريخ التسجيل</td>
-                                <td class="text-center">Actions</td>
+                                <td class="text-center">name</td>
+                                <td class="text-center">age</td>
+                                <td class="text-center">Phone Number</td>
+                                <td class="text-center">SSN</td>
+                                <td class="text-center">Address</td>
+                                <td class="text-center">Past Job</td>
+                                <td class="text-center">Leader</td>
+                                <td class="text-center">Job Description</td>
+                                <td class="text-center">Status</td>
+                                <td class="text-center">Salary</td>
+                                <td class="text-center">Profile Image</td>
+                                <td class="text-center">Action</td>
                             </tr>
                         </thead>
+                        <tbody>
+                            @if ($employeeCount >= 1)
+                                @foreach ($employees as $employee)
+                                    <tr class="text-center">
+                                        <td>{{$employee->id}}</td>
+                                        <td>{{$employee->name}}</td>
+                                        <td>{{$employee->age}}</td>
+                                        <td>{{$employee->phone_number}}</td>
+                                        <td>{{$employee->ssn}}</td>
+                                        <td>{{$employee->address}}</td>
+                                        <td>{{$employee->pastjob}}</td>
+                                        <td>{{$employee->leader}}</td>
+                                        <td>{{$employee->job_desc}}</td>
+                                        <td>{{$employee->status}}</td>
+                                        <td>{{$employee->salary}}</td>
+                                        <td>
+                                            <img class="img-circle elevation-2" src="{{asset('images/' . $employee->img)}}" alt="{{$employee->name}}">
+                                        </td>
+                                        <td>
+                                            <a href='' class="btn btn-warning">Edit Info</a>
+                                            <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <h1 class="text-center">No Employees To Show</h1>
+                            @endif
+                        </tbody>
                     </table>
                 </div>
             </div>

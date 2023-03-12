@@ -25,9 +25,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+Route::get('dashboard', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
+    //! Dashboard Routes
+    Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('home');
     //! Admin Routes
     Route::view('about', 'about')->name('about');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
@@ -37,7 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::get('employeelist',[EmployeeController::class, 'index'])->name('Employee.index');
     Route::view('addnew', 'Employee.addnew')->name('Employee.addnew');
     Route::post('create',[EmployeeController::class,'create'])->name('Employee.create');
+    Route::get("delete/{id}", [EmployeeController::class, 'delete'])->name('delete');
     //! Manager Routes
     Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
     Route::view('addmanager', 'Manager.addnew');
+    //! Department Routes
+    //! Branch Routes
+    //! Payment Routes
+    //! Application Routes
+    //! Leave Routes
+    //! Position Routes
+    //! Attendance Routes
 });

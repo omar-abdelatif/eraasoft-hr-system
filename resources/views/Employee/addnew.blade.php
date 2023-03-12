@@ -18,6 +18,15 @@
         </div>
     </section>
     <section class="content">
+        @if ($errors->any()){
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">
+                    <p class="m-0 text-center">{{$error}}</p>
+                </div>
+            @endforeach
+        }
+
+        @endif
         <form action="{{route('Employee.create')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -38,11 +47,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee SSN</label>
-                                <input type="text" id="inputName" name="ssn" class="form-control">
+                                <input type="number" id="inputName" name="ssn" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee Age</label>
-                                <input type="text" id="inputName" name="age" class="form-control">
+                                <input type="number" id="inputName" name="age" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee Phone Number</label>
@@ -72,7 +81,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="inputClientCompany">Employee Past Job</label>
-                                <input type="text" id="inputClientCompany" name="past-job" class="form-control">
+                                <input type="text" id="inputClientCompany" name="pastjob" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="inputProjectLeader">Employee Leader</label>
@@ -80,7 +89,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Past Job Description</label>
-                                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                                <textarea id="inputDescription" name="job_desc" class="form-control" rows="4"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>

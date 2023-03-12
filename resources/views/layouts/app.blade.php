@@ -16,6 +16,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     @yield('styles')
+    {{-- ! Custom Style ! --}}
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
