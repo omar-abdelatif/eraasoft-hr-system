@@ -7,20 +7,20 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class EmployeeController extends Controller
 {
-    // use
     public function index(){
         return view('Employee.index');
     }
     public function ViewData()
     {
-        $admin = User::all();
+        $admin = DB::table('users')->get();;
         $adminCount = $admin->count();
-        $employees = Employee::all();
+        $employees = DB::table('employee')->get();
         $employeeCount = $employees->count();
-        return view('Admin.home', compact('employees', 'employeeCount', 'admin', 'adminCount'));
+        return View::make('Admin.home', compact('employees', 'employeeCount', 'admin', 'adminCount'));
     }
     public function create(Request $request)
     {
@@ -43,7 +43,19 @@ class EmployeeController extends Controller
             $destinationPath = public_path('images');
             $img->move($destinationPath, $name);
         }
-        $store = DB::table('employee')->insert($request->except('_token'));
+        $store = DB::table('employee')->insert([
+            "name" => $request->name,
+            "phone_number" => $request->phone_number,
+            "ssn" => $request->ssn,
+            "age" => $request->age,
+            "address" => $request->address,
+            "pastjob" => $request->pastjob,
+            "leader" => $request->leader,
+            "job_desc" => $request->job_desc,
+            "status" => $request->status,
+            "salary" => $request->salary,
+            "img" => $name,
+        ]);
         if ($store) {
             return redirect('dashboard');
         }
@@ -51,11 +63,21 @@ class EmployeeController extends Controller
     }
     public function delete($id)
     {
-        $delete = DB::table('employee')->delete($id);
+        $employee = Employee::find($id);
+        $delete = $employee->delete();
         if ($delete) {
-            return view("Admin.home")->with('success', 'Employee Deleted Successfully');
+            return View::make("Admin.home")->with('success', 'Employee Deleted Successfully');
         }
-        return redirect("Admin.home")->withErrors('Something Went Wrong While Deletion');
+        return redirect("Admin.home")->withErrors('Something Went Wrong While Deleting');
+    }
+    public function edit($id)
+    {
+        $edit = DB::table('employee')->find($id);
+        return view("Employee.edit", compact("edit"));
+    }
+    public function update(Request $request)
+    {
+
     }
 }
 ?>

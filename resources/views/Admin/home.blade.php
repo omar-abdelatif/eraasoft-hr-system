@@ -20,67 +20,71 @@
                 <div class="col-lg-12">
                     <div class="box-info">
                         {{-- ! Info Box ! --}}
-                        {{-- <div class="container-fluid"> --}}
-                            <div class="row justify-content-center">
-                                <div class="col">
-                                    <div class="info-box bg-success">
-                                        <span class="info-box-icon">
-                                            <i class="far fa-flag"></i>
-                                        </span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total Admins</span>
-                                            <span class="info-box-number">{{$adminCount}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="info-box bg-gradient-warning">
-                                        <span class="info-box-icon">
-                                            <i class="far fa-copy"></i>
-                                        </span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total Managers</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="info-box bg-info">
-                                        <span class="info-box-icon">
-                                            <i class="far fa-copy"></i>
-                                        </span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total Employees</span>
-                                            <span class="info-box-number">{{$employeeCount}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="info-box bg-danger">
-                                        <span class="info-box-icon">
-                                            <i class="far fa-copy"></i>
-                                        </span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total Departments</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="info-box bg-primary">
-                                        <span class="info-box-icon">
-                                            <i class="far fa-copy"></i>
-                                        </span>
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Total Branches</span>
-                                            <span class="info-box-number">13,648</span>
-                                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <div class="info-box bg-success">
+                                    <span class="info-box-icon">
+                                        <i class="far fa-flag"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Admins</span>
+                                        <span class="info-box-number">{{ $adminCount }}</span>
                                     </div>
                                 </div>
                             </div>
-                        {{-- </div> --}}
+                            <div class="col">
+                                <div class="info-box bg-gradient-warning">
+                                    <span class="info-box-icon">
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Managers</span>
+                                        <span class="info-box-number">13,648</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="info-box bg-info">
+                                    <span class="info-box-icon">
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Employees</span>
+                                        <span class="info-box-number">{{ $employeeCount }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="info-box bg-danger">
+                                    <span class="info-box-icon">
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Departments</span>
+                                        <span class="info-box-number">13,648</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="info-box bg-primary">
+                                    <span class="info-box-icon">
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Branches</span>
+                                        <span class="info-box-number">13,648</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table borderd-table display align-middle text-center w-100" id="table" data-order='[[ 1, "asc" ]]' data-page-length='25'>
+                    @if (session('success'))
+                        <div class="alert alert-success text-center mt-5">
+                            <p class="mb-0">{{ session('success') }}</p>
+                        </div>
+                    @endif
+                    <table class="table borderd-table display align-middle text-center w-100" id="table"
+                        data-order='[[ 1, "asc" ]]' data-page-length='25'>
                         <thead>
                             <tr class="text-center">
                                 <td class="text-center">id</td>
@@ -102,22 +106,23 @@
                             @if ($employeeCount >= 1)
                                 @foreach ($employees as $employee)
                                     <tr class="text-center">
-                                        <td>{{$employee->id}}</td>
-                                        <td>{{$employee->name}}</td>
-                                        <td>{{$employee->age}}</td>
-                                        <td>{{$employee->phone_number}}</td>
-                                        <td>{{$employee->ssn}}</td>
-                                        <td>{{$employee->address}}</td>
-                                        <td>{{$employee->pastjob}}</td>
-                                        <td>{{$employee->leader}}</td>
-                                        <td>{{$employee->job_desc}}</td>
-                                        <td>{{$employee->status}}</td>
-                                        <td>{{$employee->salary}}</td>
+                                        <td>{{ $employee->id }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->age }}</td>
+                                        <td>{{ $employee->phone_number }}</td>
+                                        <td>{{ $employee->ssn }}</td>
+                                        <td>{{ $employee->address }}</td>
+                                        <td>{{ $employee->pastjob }}</td>
+                                        <td>{{ $employee->leader }}</td>
+                                        <td>{{ $employee->job_desc }}</td>
+                                        <td>{{ $employee->status }}</td>
+                                        <td>{{ $employee->salary }}</td>
                                         <td>
-                                            <img class="img-circle elevation-2" src="{{asset('images/' . $employee->img)}}" alt="{{$employee->name}}">
+                                            <img class="img-circle elevation-2" width="50px"
+                                                src="{{ asset('images/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
-                                        <td>
-                                            <a href='' class="btn btn-warning">Edit Info</a>
+                                        <td class="d-flex">
+                                            <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>
                                             <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
