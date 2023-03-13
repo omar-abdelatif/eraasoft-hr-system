@@ -78,6 +78,13 @@
                             </div>
                         </div>
                     </div>
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger text-center mt-5">
+                                <p class="mb-0">{{ $error }}</p>
+                            </div>
+                        @endforeach
+                    @endif
                     @if (session('success'))
                         <div class="alert alert-success text-center mt-5">
                             <p class="mb-0">{{ session('success') }}</p>

@@ -18,7 +18,7 @@
         </div>
     </section>
     <section class="content">
-        <form action="{{route('Employee.create')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('Employee.update')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="col-12 mb-4">
-                    <input type="submit" value="Create" class="btn btn-success text-right w-100 text-center">
+                    <input type="submit" value="Update" class="btn btn-success text-right w-100 text-center">
                 </div>
             </div>
         </form>

@@ -77,7 +77,11 @@ class EmployeeController extends Controller
     }
     public function update(Request $request)
     {
-
+        $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
+        if ($update) {
+            return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
+        }
+        return redirect('dashboard')->withErrors('Error Happen While Updating Plz Try Again');
     }
 }
 ?>
