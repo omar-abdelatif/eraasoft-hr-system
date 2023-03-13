@@ -39,7 +39,7 @@
                                     </span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Managers</span>
-                                        <span class="info-box-number">13,648</span>
+                                        <span class="info-box-number">{{ $managerCount }}</span>
                                     </div>
                                 </div>
                             </div>

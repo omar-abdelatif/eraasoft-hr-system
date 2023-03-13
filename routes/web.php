@@ -28,23 +28,27 @@ Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    //! Dashboard Routes
-    Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('home');
     //! Admin Routes
     Route::view('about', 'about')->name('about');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     //! Employee Routes
-    Route::get('employeelist',[EmployeeController::class, 'index'])->name('Employee.index');
     Route::view('addnew', 'Employee.addnew')->name('Employee.addnew');
     Route::post('create',[EmployeeController::class,'create'])->name('Employee.create');
+    Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('home');
+    Route::get('employeelist', [EmployeeController::class, 'index'])->name('Employee.index');
     Route::get("delete/{id}", [EmployeeController::class, 'delete'])->name('Employee.delete');
     Route::get("edit/{id}", [EmployeeController::class, 'edit'])->name('Employee.edit');
     Route::post("update", [EmployeeController::class, 'update'])->name('Employee.update');
     //! Manager Routes
     Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
-    Route::view('addmanager', 'Manager.addnew');
+    Route::view('addnew', 'Manager.addnew')->name('Employee.addnew');
+    Route::post('create', [ManagerController::class, 'create'])->name('Manager.create');
+    Route::get('dashboard', [ManagerController::class, 'ViewData'])->name('home');
+    Route::get("delete/{id}", [ManagerController::class, 'delete'])->name('Manager.delete');
+    Route::get("edit/{id}", [ManagerController::class, 'edit'])->name('Manager.edit');
+    Route::post("update", [ManagerController::class, 'update'])->name('Manager.update');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

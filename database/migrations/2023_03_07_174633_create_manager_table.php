@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,8 +15,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('manager', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->integer('id')->autoIncrement();
+            $table->string('name');
+            $table->integer('phone_number')->unique();
+            $table->integer('ssn')->unique();
+            $table->integer('age');
+            $table->string('address');
+            $table->string('job_desc');
+            $table->string('status');
+            $table->integer('salary');
+            $table->string('img');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

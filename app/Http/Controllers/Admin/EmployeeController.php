@@ -20,7 +20,9 @@ class EmployeeController extends Controller
         $adminCount = $admin->count();
         $employees = DB::table('employee')->get();
         $employeeCount = $employees->count();
-        return View::make('Admin.home', compact('employees', 'employeeCount', 'admin', 'adminCount'));
+        $manager = DB::table('manager')->get();
+        $managerCount = $manager->count();
+        return View::make('Admin.home', compact('employees', 'employeeCount', 'admin', 'adminCount', 'manager', 'managerCount'));
     }
     public function create(Request $request)
     {
