@@ -16,20 +16,20 @@ class ManagerController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'ssn' => 'required|unique:employee,ssn',
+            'name' => 'required|string',
+            'ssn' => 'required|unique:manager,ssn',
             'age' => 'required',
-            'phone_number' => 'required|unique:employee,phone_number',
+            'phone_number' => 'required|unique:manager,phone_number',
             'address' => 'required',
-            'img' => 'required',
+            'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
             'leader' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:Pending,Rejected,Approved',
             'salary' => 'required',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
-            $destinationPath = public_path('images');
+            $destinationPath = public_path('images/manager');
             $img->move($destinationPath, $name);
         }
         $store = DB::table('manager')->insert([
@@ -39,6 +39,7 @@ class ManagerController extends Controller
             "age" => $request->age,
             "address" => $request->address,
             "leader" => $request->leader,
+            "job_desc" => $request->job_desc,
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,

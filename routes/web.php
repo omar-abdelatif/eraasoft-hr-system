@@ -34,20 +34,17 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     //! Employee Routes
-    Route::view('addnew', 'Employee.addnew')->name('Employee.addnew');
+    Route::get('addnew', [EmployeeController::class, 'addNew'])->name('Employee.addnew');
     Route::post('create',[EmployeeController::class,'create'])->name('Employee.create');
-    Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('home');
+    Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('Admin.home');
     Route::get('employeelist', [EmployeeController::class, 'index'])->name('Employee.index');
     Route::get("delete/{id}", [EmployeeController::class, 'delete'])->name('Employee.delete');
     Route::get("edit/{id}", [EmployeeController::class, 'edit'])->name('Employee.edit');
     Route::post("update", [EmployeeController::class, 'update'])->name('Employee.update');
     //! Manager Routes
     Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
-    Route::view('addnew', 'Manager.addnew')->name('Manager.addnew');
-    Route::post('create', [ManagerController::class, 'create'])->name('Manager.create');
-    Route::get("delete/{id}", [ManagerController::class, 'delete'])->name('Manager.delete');
-    Route::get("edit/{id}", [ManagerController::class, 'edit'])->name('Manager.edit');
-    Route::post("update", [ManagerController::class, 'update'])->name('Manager.update');
+    Route::view('addmanager', 'Manager.addnew')->name('Manager.addnew');
+    Route::post('store', [ManagerController::class, 'create'])->name('Manager.store');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

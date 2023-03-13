@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('home') }}">Home</a>
+                            <a href="{{ route('Admin.home') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item active">Employee Add</li>
                     </ol>
@@ -92,10 +92,10 @@
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
                                 <select id="inputStatus" name="status" class="form-control custom-select">
-                                    <option selected="" disabled="">Select one</option>
-                                    <option>Pending</option>
-                                    <option>Rejected</option>
-                                    <option>Approved</option>
+                                    <option selected>Select one</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Rejected">Rejected</option>
+                                    <option value="Approved">Approved</option>
                                 </select>
                             </div>
                             <div class="form-group">

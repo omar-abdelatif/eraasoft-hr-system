@@ -14,6 +14,10 @@ class EmployeeController extends Controller
     public function index(){
         return view('Employee.index');
     }
+    public function addNew()
+    {
+        return view('Employee.addnew');
+    }
     public function ViewData()
     {
         $admin = DB::table('users')->get();;

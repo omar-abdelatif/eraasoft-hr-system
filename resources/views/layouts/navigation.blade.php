@@ -13,7 +13,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="overflow: hidden">
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
+                <a href="{{ route('Admin.home') }}" class="nav-link">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Dashboard') }}
@@ -241,7 +241,7 @@
                     <li class="nav-item ml-4">
                         <a href="{{ route('Employee.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Employee</p>
+                            <p>Employees</p>
                         </a>
                     </li>
                     <li class="nav-item ml-4">
