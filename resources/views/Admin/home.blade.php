@@ -126,7 +126,7 @@
                                         <td>{{ $employee->salary }}</td>
                                         <td>
                                             <img class="img-circle elevation-2" width="50px"
-                                                src="{{ asset('images/' . $employee->img) }}" alt="{{ $employee->name }}">
+                                                src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
                                         <td class="d-flex">
                                             <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>

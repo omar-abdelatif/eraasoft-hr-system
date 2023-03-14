@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\View;
 class EmployeeController extends Controller
 {
     public function index(){
-        return view('Employee.index');
+        $employees = DB::table('employee')->get();
+        $employeeCount = $employees->count();
+        return view('Employee.index', compact('employees', 'employeeCount'));
     }
     public function addNew()
     {
@@ -30,23 +32,24 @@ class EmployeeController extends Controller
     }
     public function create(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        $request->validate(['name' => 'required|string',
             'ssn' => 'required|unique:employee,ssn',
             'age' => 'required',
             'phone_number' => 'required|unique:employee,phone_number',
             'address' => 'required',
-            'img' => 'required',
+            'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
             'pastjob' => 'required',
             'leader' => 'required',
             'job_desc' => 'required',
             'status' => 'required',
             'salary' => 'required',
+        ], [
+            'img.max' => 'The uploaded image must be less than 2MB.',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
-            $destinationPath = public_path('images');
+            $destinationPath = public_path('images/employee');
             $img->move($destinationPath, $name);
         }
         $store = DB::table('employee')->insert([

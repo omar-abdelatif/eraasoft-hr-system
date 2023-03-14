@@ -5,13 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Manager;
 use Illuminate\Support\Facades\View;
 
 class ManagerController extends Controller
 {
     public function index()
     {
-        return view('Manager.index');
+        $managers = DB::table('manager')->get();
+        $managerCount = $managers->count();
+        return view('Manager.index', compact('managers', 'managerCount'));
     }
     public function create(Request $request)
     {
@@ -22,9 +25,10 @@ class ManagerController extends Controller
             'phone_number' => 'required|unique:manager,phone_number',
             'address' => 'required',
             'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
-            'leader' => 'required',
             'status' => 'required|in:Pending,Rejected,Approved',
             'salary' => 'required',
+        ], [
+            'img.max' => 'The uploaded image must be less than 2MB.',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
@@ -38,7 +42,6 @@ class ManagerController extends Controller
             "ssn" => $request->ssn,
             "age" => $request->age,
             "address" => $request->address,
-            "leader" => $request->leader,
             "job_desc" => $request->job_desc,
             "status" => $request->status,
             "salary" => $request->salary,
@@ -48,5 +51,14 @@ class ManagerController extends Controller
             return redirect('dashboard');
         }
         return redirect('addnew')->withErrors("حدث خطأ ما");
+    }
+    public function delete($id)
+    {
+        $manager = Manager::find($id);
+        $delete = $manager->delete();
+        if ($delete) {
+            return View::make("Manager.index")->with('success', 'Employee Deleted Successfully');
+        }
+        return redirect("Manager.index")->withErrors('Something Went Wrong While Deleting');
     }
 }
