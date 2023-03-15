@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::view('addmanager', 'Manager.addnew')->name('Manager.addnew');
     Route::post('store', [ManagerController::class, 'create'])->name('Manager.create');
     Route::get('delete/{id}', [ManagerController::class, 'delete'])->name('Manager.delete');
+    Route::get('editmanager/{id}', [ManagerController::class, 'edit'])->name('Manager.edit');
+    Route::post('update', [ManagerController::class, 'update'])->name('Manager.update');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

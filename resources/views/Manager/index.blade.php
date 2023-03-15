@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('All Manages') }}</h1>
+                    <h1 class="m-0">{{ __('All Managers') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <h1 class="text-right">
@@ -33,8 +33,7 @@
                             <p class="mb-0">{{ session('success') }}</p>
                         </div>
                     @endif
-                    <table class="table borderd-table display align-middle text-center w-100" id="table"
-                        data-order='[[ 1, "asc" ]]' data-page-length='25'>
+                    <table class="table borderd-table display align-middle text-center w-100" id="table" data-order='[[ 1, "asc" ]]' data-page-length='25'>
                         <thead>
                             <tr class="text-center">
                                 <td class="text-center">id</td>
@@ -68,7 +67,7 @@
                                                 src="{{ asset('images/manager/' . $manager->img) }}" alt="{{ $manager->name }}">
                                         </td>
                                         <td class="d-flex">
-                                            <a href='{{ url("edit/$manager->id") }}' class="btn btn-warning">Edit</a>
+                                            <a href='{{ url("editmanager/$manager->id") }}' class="btn btn-warning">Edit</a>
                                             <a href='{{ url("delete/$manager->id") }}' class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
