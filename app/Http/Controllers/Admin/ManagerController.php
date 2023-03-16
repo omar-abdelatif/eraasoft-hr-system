@@ -11,7 +11,9 @@ class ManagerController extends Controller
 {
     public function index()
     {
-        return view('Manager.index');
+        $managers = DB::table('manager')->get();
+        $managerCount = $managers->count();
+        return view('Manager.index', compact('managers', 'managerCount'));
     }
     public function create(Request $request)
     {
@@ -45,7 +47,7 @@ class ManagerController extends Controller
             "img" => $name,
         ]);
         if ($store) {
-            return redirect('dashboard');
+            return view('Manager.index');
         }
         return redirect('addnew')->withErrors("حدث خطأ ما");
     }

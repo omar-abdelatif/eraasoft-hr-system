@@ -8,19 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\EmployeeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('Admin.auth.login');
 });
 
 Auth::routes();
@@ -42,9 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get("edit/{id}", [EmployeeController::class, 'edit'])->name('Employee.edit');
     Route::post("update", [EmployeeController::class, 'update'])->name('Employee.update');
     //! Manager Routes
-    Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
     Route::view('addmanager', 'Manager.addnew')->name('Manager.addnew');
-    Route::post('store', [ManagerController::class, 'create'])->name('Manager.store');
+    Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
+    Route::post('store', [ManagerController::class, 'create'])->name('Manager.create');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

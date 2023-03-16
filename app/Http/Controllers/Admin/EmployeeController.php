@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +45,7 @@ class EmployeeController extends Controller
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
-            $destinationPath = public_path('images');
+            $destinationPath = public_path('images/employee/');
             $img->move($destinationPath, $name);
         }
         $store = DB::table('employee')->insert([
@@ -83,11 +82,25 @@ class EmployeeController extends Controller
     }
     public function update(Request $request)
     {
+        $validator = $request->validate([
+            'name' => 'required|string',
+            'ssn' => 'required|unique:employee,ssn',
+            'age' => 'required|numeric',
+            'phone_number' => 'required|numeric|unique:employee,phone_number',
+            'address' => 'required',
+            'img' => 'required',
+            'pastjob' => 'required',
+            'leader' => 'required',
+            'job_desc' => 'required',
+            'status' => 'required',
+            'salary' => 'required|numeric',
+        ]);
         $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
+        $update = Employee::findOrFail();
         if ($update) {
             return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
         }
-        return redirect('dashboard')->withErrors('Error Happen While Updating Plz Try Again');
+        return redirect('addnew')->withErrors($validator);
     }
 }
 ?>

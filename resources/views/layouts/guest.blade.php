@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>EraaSoft | Login</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{{asset('images/eraasoft.png')}}" type="image/x-icon">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- icheck bootstrap -->
@@ -18,7 +18,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="/">{{ config('app.name', 'Laravel') }}</a>
+        <a href="/">
+            <img class="rounded-circle" src="{{asset('images/eraasoft.png')}}" alt="logo">
+        </a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
