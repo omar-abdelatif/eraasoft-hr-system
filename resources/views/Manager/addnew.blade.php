@@ -78,10 +78,6 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="inputProjectLeader">Manager Leader</label>
-                                <input type="text" id="inputProjectLeader" name="leader" class="form-control">
-                            </div>
-                            <div class="form-group">
                                 <label for="inputStatus">Status</label>
                                 <select id="inputStatus" name="status" class="form-control custom-select">
                                     <option selected="" disabled="">Select one</option>
@@ -93,6 +89,10 @@
                             <div class="form-group">
                                 <label for="inputSalary">Manager Salary</label>
                                 <input type="number" id="inputSalary" name="salary" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Past Job Description</label>
+                                <textarea id="inputDescription" name="job_desc" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
                     </div>

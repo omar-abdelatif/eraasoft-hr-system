@@ -1,0 +1,6 @@
+insert
+select
+-- both is greater than ok in employee and manager
+
+delete { here comes the error but the weired thing that it is delete after the error comes and refresh the page}
+update {when update error happen and the message is ananymous}

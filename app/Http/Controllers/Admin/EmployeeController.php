@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\View;
 class EmployeeController extends Controller
 {
     public function index(){
-        return view('Employee.index');
+        $employees = DB::table('employee')->get();
+        $employeeCount = $employees->count();
+        return view('Employee.index', compact('employees', 'employeeCount'));
     }
     public function addNew()
     {
@@ -29,23 +31,28 @@ class EmployeeController extends Controller
     }
     public function create(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        $request->validate(['name' => 'required|string',
             'ssn' => 'required|unique:employee,ssn',
             'age' => 'required',
             'phone_number' => 'required|unique:employee,phone_number',
             'address' => 'required',
-            'img' => 'required',
+            'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
             'pastjob' => 'required',
             'leader' => 'required',
             'job_desc' => 'required',
             'status' => 'required',
             'salary' => 'required',
+        ], [
+            'img.max' => 'The uploaded image must be less than 2MB.',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
+<<<<<<< HEAD
             $destinationPath = public_path('images/employee/');
+=======
+            $destinationPath = public_path('images/employee');
+>>>>>>> 65c70e37fcc47afc5badafcfd4f791372f2caeb9
             $img->move($destinationPath, $name);
         }
         $store = DB::table('employee')->insert([
@@ -82,6 +89,7 @@ class EmployeeController extends Controller
     }
     public function update(Request $request)
     {
+<<<<<<< HEAD
         $validator = $request->validate([
             'name' => 'required|string',
             'ssn' => 'required|unique:employee,ssn',
@@ -101,6 +109,14 @@ class EmployeeController extends Controller
             return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
         }
         return redirect('addnew')->withErrors($validator);
+=======
+        dd($request);
+        // $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
+        // if ($update) {
+        //     return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
+        // }
+        // return redirect('dashboard')->withErrors('Error Happen While Updating Plz Try Again');
+>>>>>>> 65c70e37fcc47afc5badafcfd4f791372f2caeb9
     }
 }
 ?>
