@@ -50,7 +50,7 @@
                                     </span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Employees</span>
-                                        <span class="info-box-number">{{ $employeeCount }}</span>
+                                        <span class="info-box-number">{{ $employeesCount }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -78,20 +78,16 @@
                             </div>
                         </div>
                     </div>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <div class="alert alert-danger text-center mt-5">
-                                <p class="mb-0">{{ $error }}</p>
-                            </div>
-                        @endforeach
-                    @endif
                     @if (session('success'))
                         <div class="alert alert-success text-center mt-5">
                             <p class="mb-0">{{ session('success') }}</p>
                         </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger text-center mt-5">
+                            <p class="mb-0">{{ session('error') }}</p>
+                        </div>
                     @endif
-                    <table class="table borderd-table display align-middle text-center w-100" id="table"
-                        data-order='[[ 1, "asc" ]]' data-page-length='25'>
+                    <table class="table borderd-table display align-middle text-center w-100" id="table" data-order='[[ 0, "asc" ]]' data-page-length='10'>
                         <thead>
                             <tr class="text-center">
                                 <td class="text-center">id</td>
@@ -110,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($employeeCount >= 1)
+                            @if ($employeesCount >= 1)
                                 @foreach ($employees as $employee)
                                     <tr class="text-center">
                                         <td>{{ $employee->id }}</td>
@@ -125,8 +121,7 @@
                                         <td>{{ $employee->status }}</td>
                                         <td>{{ $employee->salary }}</td>
                                         <td>
-                                            <img class="img-circle elevation-2" width="50px"
-                                                src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
+                                            <img class="img-circle elevation-2" width="50px" src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
                                         <td class="d-flex">
                                             <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>

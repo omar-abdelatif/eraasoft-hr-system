@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Upload Profile Img</label>
-                                <img src="{{asset('images/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto" width="100">
+                                <img src="{{asset('images/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto rounded-circle mb-4" width="100">
                                 <input type="file" id="inputProjectLeader" value="{{$edit->img}}" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <div class="col-12 mb-4">
-                    <input type="submit" value="Update" name="submit" class="btn btn-success text-right w-100 text-center">
+                    <input type="submit" value="Update" class="btn btn-success text-right w-100 text-center">
                 </div>
             </div>
         </form>

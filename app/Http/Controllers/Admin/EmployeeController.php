@@ -6,6 +6,8 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Manager;
+use App\Models\User;
 use Illuminate\Support\Facades\View;
 
 class EmployeeController extends Controller
@@ -19,23 +21,23 @@ class EmployeeController extends Controller
     }
     public function ViewData()
     {
-        $admin = DB::table('users')->get();;
-        $adminCount = $admin->count();
-        $employees = DB::table('employee')->get();
-        $employeeCount = $employees->count();
+        $admin = User::all();
+        $adminCount = User::count();
+        $employees = Employee::all();
+        $employeesCount = Employee::count();
         $manager = DB::table('manager')->get();
         $managerCount = $manager->count();
-        return View::make('Admin.home', compact('employees', 'employeeCount', 'admin', 'adminCount', 'manager', 'managerCount'));
+        return View::make('Admin.home', compact('employees', 'employeesCount', 'admin', 'adminCount', 'manager', 'managerCount'));
     }
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'ssn' => 'required|unique:employee,ssn',
             'age' => 'required',
             'phone_number' => 'required|unique:employee,phone_number',
             'address' => 'required',
-            'img' => 'required',
+            'img' => 'required|image|max:2048|mimes:png,jpg,jpeg,webp,gif',
             'pastjob' => 'required',
             'leader' => 'required',
             'job_desc' => 'required',
@@ -48,7 +50,7 @@ class EmployeeController extends Controller
             $destinationPath = public_path('images/employee/');
             $img->move($destinationPath, $name);
         }
-        $store = DB::table('employee')->insert([
+        $store = Employee::create([
             "name" => $request->name,
             "phone_number" => $request->phone_number,
             "ssn" => $request->ssn,
@@ -62,16 +64,36 @@ class EmployeeController extends Controller
             "img" => $name,
         ]);
         if ($store) {
-            return redirect('dashboard');
+            return redirect('dashboard')->with('success', 'تمت الإضافة بنجاح');;
         }
         return redirect('addnew')->withErrors("حدث خطأ ما");
     }
     public function delete($id)
     {
         $employee = Employee::find($id);
-        $delete = $employee->delete();
-        if ($delete) {
-            return View::make("Admin.home")->with('success', 'Employee Deleted Successfully');
+        if ($employee) {
+            $employees = Employee::all();
+            $employeescount = Employee::count();
+            $admin = User::all();
+            $adminCount = User::count();
+            $manager = Manager::all();
+            $managerCount = Manager::count();
+            if ($employee->img !== null) {
+                $oldImagePath = public_path('images/employee/' . $employee->img);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $employee->delete();
+            return view("Admin.home")->with([
+                'success' => 'Employee Deleted Successfully',
+                'count' => $employeescount,
+                'employees' => $employees,
+                'admin' => $admin,
+                'adminCount' => $adminCount,
+                'manager' => $manager,
+                'managerCount', $managerCount
+            ]);
         }
         return redirect("Admin.home")->withErrors('Something Went Wrong While Deleting');
     }
@@ -80,6 +102,28 @@ class EmployeeController extends Controller
         $edit = DB::table('employee')->find($id);
         return view("Employee.edit", compact("edit"));
     }
+    // public function update(Request $request)
+    // {
+        // $validator = $request->validate([
+        //     'name' => 'required|string',
+        //     'ssn' => 'required|unique:employee,ssn',
+        //     'age' => 'required|numeric',
+        //     'phone_number' => 'required|numeric|unique:employee,phone_number',
+        //     'address' => 'required',
+        //     'img' => 'required',
+        //     'pastjob' => 'required',
+        //     'leader' => 'required',
+        //     'job_desc' => 'required',
+        //     'status' => 'required',
+        //     'salary' => 'required|numeric',
+        // ]);
+    //     $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
+    //     $update = Employee::findOrFail();
+    //     if ($update) {
+    //         return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
+    //     }
+    //     return redirect('addnew')->withErrors($validator);
+    // }
     public function update(Request $request)
     {
         $validator = $request->validate([
@@ -95,12 +139,16 @@ class EmployeeController extends Controller
             'status' => 'required',
             'salary' => 'required|numeric',
         ]);
-        $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
-        $update = Employee::findOrFail();
-        if ($update) {
-            return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
+        if (request()->hasFile('img')) {
+            $img = request()->file('img');
+            $name = time() . '.' . $img->getClientOriginalExtension();
+            $destinationPath = public_path('images/employee/');
+            $img->move($destinationPath, $name);
         }
-        return redirect('addnew')->withErrors($validator);
+        $update = DB::table("employee")->where("id", $request->id)->update($request->except("id", "_token"));
+        if ($update) {
+            return redirect('dashboard')->with('success', 'Record updated successfully!');
+        }
+        return redirect()->route('Employee.edit')->withErrors($validator);
     }
 }
-?>

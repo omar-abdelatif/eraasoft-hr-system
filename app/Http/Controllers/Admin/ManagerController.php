@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Manager;
 use Illuminate\Support\Facades\View;
 
 class ManagerController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        $managers = DB::table('manager')->get();
-        $managerCount = $managers->count();
-        return view('Manager.index', compact('managers', 'managerCount'));
-=======
         $managers = Manager::all();
         $managerCount = $managers->count();
         return redirect('managerlist', compact('managers', 'managerCount'));
->>>>>>> 65c70e37fcc47afc5badafcfd4f791372f2caeb9
     }
     public function create(Request $request)
     {
@@ -33,8 +27,6 @@ class ManagerController extends Controller
             'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
             'status' => 'required|in:Pending,Rejected,Approved',
             'salary' => 'required',
-        ], [
-            'img.max' => 'The uploaded image must be less than 2MB.',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
@@ -84,7 +76,7 @@ class ManagerController extends Controller
             'status' => 'required|in:Pending,Rejected,Approved',
             'salary' => 'required',
         ]);
-        if (request()->hasFile('img')) {
+        if ($request->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
             $destinationPath = public_path('images/manager');
