@@ -27,7 +27,7 @@ class EmployeeController extends Controller
         $employeesCount = Employee::count();
         $manager = DB::table('manager')->get();
         $managerCount = $manager->count();
-        return View::make('Admin.home', compact('employees', 'employeesCount', 'admin', 'adminCount', 'manager', 'managerCount'));
+        return  view('Admin.home', compact('employees', 'employeesCount', 'admin', 'adminCount', 'manager', 'managerCount'));
     }
     public function create(Request $request)
     {
@@ -73,7 +73,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         if ($employee) {
             $employees = Employee::all();
-            $employeescount = Employee::count();
+            $employeesCount = Employee::count();
             $admin = User::all();
             $adminCount = User::count();
             $manager = Manager::all();
@@ -85,70 +85,70 @@ class EmployeeController extends Controller
                 }
             }
             $employee->delete();
-            return view("Admin.home")->with([
+            return redirect()->route('Admin.home')->with([
                 'success' => 'Employee Deleted Successfully',
-                'count' => $employeescount,
+                'employeesCount' => $employeesCount,
                 'employees' => $employees,
                 'admin' => $admin,
                 'adminCount' => $adminCount,
                 'manager' => $manager,
-                'managerCount', $managerCount
+                'managerCount' => $managerCount
             ]);
         }
-        return redirect("Admin.home")->withErrors('Something Went Wrong While Deleting');
+        return redirect()->route('Admin.home')->with('error', 'Something Bad Happen');
     }
     public function edit($id)
     {
-        $edit = DB::table('employee')->find($id);
+        $edit = Employee::find($id);
         return view("Employee.edit", compact("edit"));
     }
-    // public function update(Request $request)
-    // {
-        // $validator = $request->validate([
-        //     'name' => 'required|string',
-        //     'ssn' => 'required|unique:employee,ssn',
-        //     'age' => 'required|numeric',
-        //     'phone_number' => 'required|numeric|unique:employee,phone_number',
-        //     'address' => 'required',
-        //     'img' => 'required',
-        //     'pastjob' => 'required',
-        //     'leader' => 'required',
-        //     'job_desc' => 'required',
-        //     'status' => 'required',
-        //     'salary' => 'required|numeric',
-        // ]);
-    //     $update = DB::table('employee')->where("id", $request->id)->update($request->except("id", "_token"));
-    //     $update = Employee::findOrFail();
-    //     if ($update) {
-    //         return redirect('dashboard')->with('success', 'Employee Info Updated Successfully');
-    //     }
-    //     return redirect('addnew')->withErrors($validator);
-    // }
     public function update(Request $request)
     {
-        $validator = $request->validate([
-            'name' => 'required|string',
-            'ssn' => 'required|unique:employee,ssn',
-            'age' => 'required|numeric',
-            'phone_number' => 'required|numeric|unique:employee,phone_number',
-            'address' => 'required',
-            'img' => 'required',
-            'pastjob' => 'required',
-            'leader' => 'required',
-            'job_desc' => 'required',
-            'status' => 'required',
-            'salary' => 'required|numeric',
-        ]);
-        if (request()->hasFile('img')) {
-            $img = request()->file('img');
-            $name = time() . '.' . $img->getClientOriginalExtension();
-            $destinationPath = public_path('images/employee/');
-            $img->move($destinationPath, $name);
+        $employee = Employee::find($request->id);
+        //! Delete Old Image
+        if ($request->hasFile('img') && $employee->img !== null) {
+            $oldImagePath = public_path('images/employee/' . $employee->img);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
         }
-        $update = DB::table("employee")->where("id", $request->id)->update($request->except("id", "_token"));
+        //! Insert New Image
+        if ($request->hasFile('img') && $request->file('img')->isValid()) {
+            $EmployeeFile = $request->file('img');
+            $name = time() . '.' . $EmployeeFile->getClientOriginalExtension();
+            $destinationPath = public_path('images/employee');
+            $EmployeeFile->move($destinationPath, $name);
+            $employee->img = $name;
+        }
+        //! Update User Data
+        $employee->name = $request->name;
+        $employee->phone_number = $request->phone_number;
+        $employee->ssn = $request->ssn;
+        $employee->age = $request->age;
+        $employee->address = $request->address;
+        $employee->pastjob = $request->pastjob;
+        $employee->leader = $request->leader;
+        $employee->job_desc = $request->job_desc;
+        $employee->status = $request->status;
+        $employee->salary = $request->salary;
+        $update = $employee->save();
         if ($update) {
-            return redirect('dashboard')->with('success', 'Record updated successfully!');
+            $employees = Employee::all();
+            $employeesCount = Employee::count();
+            $admin = User::all();
+            $adminCount = User::count();
+            $manager = Manager::all();
+            $managerCount = Manager::count();
+            return redirect()->route('Admin.home')->with([
+                'success' => 'Employee Updated Successfully',
+                'employeesCount' => $employeesCount,
+                'employees' => $employees,
+                'admin' => $admin,
+                'adminCount' => $adminCount,
+                'manager' => $manager,
+                'managerCount' => $managerCount
+            ]);
         }
-        return redirect()->route('Employee.edit')->withErrors($validator);
+        return redirect()->route('Admin.home')->with('error', 'Error While Updating');
     }
 }

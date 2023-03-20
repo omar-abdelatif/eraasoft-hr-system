@@ -40,6 +40,10 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
+                                <label for="inputName">Employee ID</label>
+                                <input type="hidden" id="inputName" value="{{$edit->id}}" name="id" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="inputName">Employee Name</label>
                                 <input type="text" id="inputName" value="{{$edit->name}}" name="name" class="form-control">
                             </div>
@@ -53,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee Phone Number</label>
-                                <input type="number" id="inputName" value="{{$edit->phone_number}}" name="phone_number" class="form-control">
+                                <input type="number" id="inputName" value="{{+20 . $edit->phone_number}}" name="phone_number" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee Address</label>
@@ -61,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Upload Profile Img</label>
-                                <img src="{{asset('images/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto rounded-circle mb-4" width="100">
+                                <img src="{{asset('images/employee/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto rounded-circle mb-4" width="100">
                                 <input type="file" id="inputProjectLeader" value="{{$edit->img}}" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
                             </div>
                         </div>

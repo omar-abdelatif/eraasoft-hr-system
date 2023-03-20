@@ -123,7 +123,7 @@
                                         <td>
                                             <img class="img-circle elevation-2" width="50px" src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
-                                        <td class="d-flex">
+                                        <td>
                                             <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>
                                             <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">Delete</a>
                                         </td>
