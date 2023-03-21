@@ -4,37 +4,39 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Manager;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
 
 class ManagerController extends Controller
 {
     public function index()
     {
         $managers = Manager::all();
-        $managerCount = $managers->count();
-        return redirect('managerlist', compact('managers', 'managerCount'));
+        $managersCount = Manager::count();
+        return view('Manager.index')->with([
+            'managers' => $managers,
+            'managersCount' => $managersCount
+        ]);
     }
     public function create(Request $request)
     {
-        $request->validate([
+        $validator = $request->validate([
             'name' => 'required|string',
             'ssn' => 'required|unique:manager,ssn',
             'age' => 'required',
             'phone_number' => 'required|unique:manager,phone_number',
             'address' => 'required',
-            'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
-            'status' => 'required|in:Pending,Rejected,Approved',
+            'img' => 'required|image|max:2048|mimes:png,jpg,jpeg,webp,gif',
+            'job_desc' => 'required',
+            'status' => 'required',
             'salary' => 'required',
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
-            $destinationPath = public_path('images/manager');
+            $destinationPath = public_path('images/manager/');
             $img->move($destinationPath, $name);
         }
-        $store = DB::table('manager')->insert([
+        $store = Manager::create([
             "name" => $request->name,
             "phone_number" => $request->phone_number,
             "ssn" => $request->ssn,
@@ -46,46 +48,78 @@ class ManagerController extends Controller
             "img" => $name,
         ]);
         if ($store) {
-            return view('Manager.index');
+            $managers = Manager::all();
+            $managersCount = Manager::count();
+            return view('Manager.index')->with([
+                'managers' => $managers,
+                'managersCount' => $managersCount
+            ]);
         }
-        return redirect('addnew')->withErrors("حدث خطأ ما");
+        return redirect()->route('addnew')->withErrors($validator);
     }
     public function delete($id)
     {
-        $manager = Manager::find($id);
-        $delete = $manager->delete();
-        if ($delete) {
-            return View::make("Manager.index")->with('success', 'Employee Deleted Successfully');
+        $manageer = Manager::find($id);
+        if ($manageer) {
+            $managers = Manager::all();
+            $managersCount = Manager::count();
+            if ($manageer->img !== null) {
+                $oldImagePath = public_path('images/manager/' . $manageer->img);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $manageer->delete();
+            return redirect()->route('Manager.index')->with([
+                'success' => 'Manager Deleted Successfully',
+                'managers' => $managers,
+                'managersCount' => $managersCount
+            ]);
         }
-        return redirect("dashboard")->withErrors('Something Went Wrong While Deleting');
+        return redirect()->route("Manager.index")->withErrors('Something Went Wrong While Deleting');
     }
     public function edit($id)
     {
-        $edit = DB::table('manager')->find($id);
+        $edit = Manager::find($id);
         return view("Manager.edit", compact("edit"));
     }
     public function update(Request $request)
     {
-        $validator = $request->validate([
-            'name' => 'required|string',
-            'ssn' => 'required|unique:manager,ssn',
-            'age' => 'required',
-            'phone_number' => 'required|unique:manager,phone_number',
-            'address' => 'required',
-            'img' => 'required|max:2048|mimes:jpeg,jpg,png,gif|image',
-            'status' => 'required|in:Pending,Rejected,Approved',
-            'salary' => 'required',
-        ]);
-        if ($request->hasFile('img')) {
-            $img = request()->file('img');
-            $name = time() . '.' . $img->getClientOriginalExtension();
+        $manager = Manager::find($request->id);
+        //! Delete Old Image
+        if ($request->hasFile('img') && $manager->img !== null) {
+            $oldImagePath = public_path('images/manager/' . $manager->img);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+        //! Insert New Image
+        if ($request->hasFile('img') && $request->file('img')->isValid()) {
+            $ManagerFile = $request->file('img');
+            $name = time() . '.' . $ManagerFile->getClientOriginalExtension();
             $destinationPath = public_path('images/manager');
-            $img->move($destinationPath, $name);
+            $ManagerFile->move($destinationPath, $name);
+            $manager->img = $name;
         }
-        $update = DB::table('manager')->where("id", $request->id)->update($request->except("id", "_token"));
+        //! Update User Data
+        $manager->name = $request->name;
+        $manager->phone_number = $request->phone_number;
+        $manager->ssn = $request->ssn;
+        $manager->age = $request->age;
+        $manager->address = $request->address;
+        $manager->job_desc = $request->job_desc;
+        $manager->status = $request->status;
+        $manager->salary = $request->salary;
+        $update = $manager->save();
         if ($update) {
-            return view("Manager.index")->with('success', 'Manager Info Updated Successfully');
+            $manager = Manager::all();
+            $managerCount = Manager::count();
+            return redirect()->route('Manager.index')->with([
+                'success' => 'Manager Updated Successfully',
+                'manager' => $manager,
+                'managerCount' => $managerCount
+            ]);
         }
-        return redirect()->route('Manager.edit')->withErrors($validator);
+        return redirect()->route('Manager.index')->with('error', 'Error While Updating');
     }
 }

@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\View;
 class EmployeeController extends Controller
 {
     public function index(){
-        return view('Employee.index');
+        $employees = Employee::all();
+        $employeesCount = Employee::count();
+        return view('Employee.index', compact('employees', 'employeesCount'));
     }
     public function addNew()
     {
@@ -31,7 +33,7 @@ class EmployeeController extends Controller
     }
     public function create(Request $request)
     {
-        $request->validate([
+        $validator = $request->validate([
             'name' => 'required|string',
             'ssn' => 'required|unique:employee,ssn',
             'age' => 'required',
@@ -64,9 +66,9 @@ class EmployeeController extends Controller
             "img" => $name,
         ]);
         if ($store) {
-            return redirect('dashboard')->with('success', 'تمت الإضافة بنجاح');;
+            return redirect()->route('Admin.home')->with('success', 'تمت الإضافة بنجاح');
         }
-        return redirect('addnew')->withErrors("حدث خطأ ما");
+        return redirect()->route('addnew')->withErrors($validator);
     }
     public function delete($id)
     {
