@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PositonController extends Controller
 {
     public function store(){
-
+        
     }
     public function delete(){
 
@@ -16,6 +16,6 @@ class PositonController extends Controller
 
     }
     public function update(){
-        
+
     }
 }
