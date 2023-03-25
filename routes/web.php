@@ -37,11 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('deletemanager/{id}', [ManagerController::class, 'delete'])->name('Manager.delete');
     Route::get('editmanager/{id}', [ManagerController::class, 'edit'])->name('Manager.edit');
     Route::post('updatemanager', [ManagerController::class, 'update'])->name('Manager.update');
+    //! Position Routes
+    Route::view('addposition', 'positions.show')->name('positions.show');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes
     //! Application Routes
     //! Leave Routes
-    //! Position Routes
     //! Attendance Routes
 });
