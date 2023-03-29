@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('All Managers') }}</h1>
+                    <h1 class="m-0">{{ __('All Positions') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <h1 class="text-right mb-3">
-                        <a href="{{ route('Manager.addnew') }}" class="btn btn-success">Add New Manager</a>
+                        <a href="{{ route('positions.addnew') }}" class="btn btn-success">{{ __('Add New Position')}}</a>
                     </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-12">
