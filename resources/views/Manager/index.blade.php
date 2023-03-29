@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <h1 class="text-right mb-3">
-                        <a href="{{ route('Manager.addnew') }}" class="btn btn-success">Add New Manager</a>
+                        <a href="{{ route('Manager.addNew') }}" class="btn btn-success">Add New Manager</a>
                     </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-12">

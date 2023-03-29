@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get("edit/{id}", [EmployeeController::class, 'edit'])->name('Employee.edit');
     Route::post("update", [EmployeeController::class, 'update'])->name('Employee.update');
     //! Manager Routes
-    Route::view('addmanager', 'Manager.addnew')->name('Manager.addnew');
+    Route::get('addmanager', [ManagerController::class, 'addNew'])->name('Manager.addNew');
     Route::post('store', [ManagerController::class, 'create'])->name('Manager.create');
     Route::get('managerlist', [ManagerController::class, 'index'])->name('Manager.index');
     Route::get('deletemanager/{id}', [ManagerController::class, 'delete'])->name('Manager.delete');

@@ -87,6 +87,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="inputStatus">Position</label>
+                                <select id="inputStatus" name="position" class="form-control custom-select">
+                                    <option selected>Select one</option>
+                                    @foreach ($positions as $position)
+                                        <option value="{{$position->name}}">{{$position->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputSalary">Manager Salary</label>
                                 <input type="number" id="inputSalary" name="salary" class="form-control">
                             </div>

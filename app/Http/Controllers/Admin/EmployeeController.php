@@ -22,7 +22,9 @@ class EmployeeController extends Controller
     {
         $positions = Positon::all();
         $positionCount = Positon::count();
-        return view('Employee.addnew', compact('positions', 'positionCount'));
+        $manager = Manager::all();
+        $managerCount = Manager::count();
+        return view('Employee.addnew', compact('positions', 'positionCount', 'manager', 'managerCount'));
     }
     public function ViewData()
     {
@@ -48,7 +50,7 @@ class EmployeeController extends Controller
             'job_desc' => 'required',
             'status' => 'required',
             'salary' => 'required',
-            'files' => 'required|mimes:pdf|max:2048'
+            'pdf' => 'required|mimes:pdf|max:2048'
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
@@ -56,11 +58,11 @@ class EmployeeController extends Controller
             $destinationPath = public_path('images/employee/');
             $img->move($destinationPath, $name);
         }
-        if ($request->hasFile('files')) {
-            $files = $request->file('files');
+        if ($request->hasFile('pdf')) {
+            $files = $request->file('pdf');
             $file_name = time() . '.' . $files->getClientOriginalExtension();
             $Path = public_path('files/');
-            $files->move($Path, $name);
+            $files->move($Path, $file_name);
         }
         $store = Employee::create([
             "name" => $request->name,
@@ -75,7 +77,7 @@ class EmployeeController extends Controller
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,
-            // "files" => $request->
+            "pdf" => $file_name
         ]);
         if ($store) {
             return redirect()->route('Admin.home')->with('success', 'تمت الإضافة بنجاح');

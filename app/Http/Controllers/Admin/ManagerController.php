@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Manager;
+use App\Models\Positon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +17,14 @@ class ManagerController extends Controller
             'managers' => $managers,
             'managersCount' => $managersCount
         ]);
+    }
+    public function addNew()
+    {
+        $positions = Positon::all();
+        $positionCount = Positon::count();
+        $manager = Manager::all();
+        $managerCount = Manager::count();
+        return view('Manager.addNew', compact('positions', 'positionCount', 'manager', 'managerCount'));
     }
     public function create(Request $request)
     {

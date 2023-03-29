@@ -66,8 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Upload Employee CV</label>
-                                <input type="file" id="inputProjectLeader" name="files" class="form-control p-0"
-                                    style="height: 2rem">
+                                <input type="file" id="inputProjectLeader" name="pdf" class="form-control p-0" accept="application/pdf" style="height: 2rem">
                             </div>
                         </div>
                     </div>
@@ -89,20 +88,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputProjectLeader">Employee Position</label>
-                                <select name="leader" class="form-control">
+                                <select name="position" class="form-control">
                                     <option selected>Choose The Position</option>
                                     @if ($positionCount > 0)
                                         @foreach ($positions as $position)
                                             <option value="{{$position->name}}">{{$position->name}}</option>
                                         @endforeach
                                     @else
-                                        <h3 class="text-center">No Managers To Display</h3>
+                                        <h3 class="text-center">No Positions To Display</h3>
                                     @endif
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="inputProjectLeader">Employee Leader</label>
-                                <input type="text" id="inputProjectLeader" name="leader" class="form-control">
+                                <select name="leader" class="form-control">
+                                    <option selected>Choose The Position</option>
+                                    @if ($managerCount > 0)
+                                        @foreach ($manager as $manager)
+                                            <option value="{{$manager->name}}">{{$manager->name}}</option>
+                                        @endforeach
+                                    @else
+                                        <h3 class="text-center">No Managers To Display</h3>
+                                    @endif
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Past Job Description</label>

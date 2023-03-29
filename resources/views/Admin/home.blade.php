@@ -96,6 +96,7 @@
                                 <td class="text-center">Phone Number</td>
                                 <td class="text-center">SSN</td>
                                 <td class="text-center">Address</td>
+                                <td class="text-center">Files</td>
                                 <td class="text-center">Past Job</td>
                                 <td class="text-center">Leader</td>
                                 <td class="text-center">Job Description</td>
@@ -115,6 +116,7 @@
                                         <td>{{ $employee->phone_number }}</td>
                                         <td>{{ $employee->ssn }}</td>
                                         <td>{{ $employee->address }}</td>
+                                        <td>{{ $employee->pdf}}</td>
                                         <td>{{ $employee->pastjob }}</td>
                                         <td>{{ $employee->leader }}</td>
                                         <td>{{ $employee->job_desc }}</td>
