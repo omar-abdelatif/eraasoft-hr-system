@@ -33,7 +33,16 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @if ($count > 0)
+                                @foreach ($position as $position)
+                                    <tr>
+                                        <td>{{$position->id}}</td>
+                                        <td>{{$position->name}}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <h1 class="text-center">No Position To Show</h1>
+                            @endif
                         </tbody>
                     </table>
                 </div>

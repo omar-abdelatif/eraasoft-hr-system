@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PositonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\PositionContrller;
 
 Route::get('/', function () {
     return view('Admin.auth.login');
@@ -39,9 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('editmanager/{id}', [ManagerController::class, 'edit'])->name('Manager.edit');
     Route::post('updatemanager', [ManagerController::class, 'update'])->name('Manager.update');
     //! Position Routes
-    Route::view('allpositions', 'positions.addnew')->name('positions.addnew');
-    Route::view('addposition', 'positions.show')->name('positions.show');
-    Route::post('create_position', [PositonController::class, 'positions.create'])->name('positions.create');
+    Route::get('allpositions', [PositionContrller::class, 'viewData'])->name('positions.show');
+    Route::view('addposition', 'positions.addnew')->name('positions.addnew');
+    Route::post('create_position', [PositionContrller::class, 'store'])->name('positions.store');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

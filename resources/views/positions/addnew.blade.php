@@ -25,7 +25,7 @@
                 </div>
             @endforeach
         @endif
-        <form action="{{route('Manager.create')}}" method="post">
+        <form action="{{route('positions.store')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -34,7 +34,7 @@
                             <h1 class="text-center mt-2 mb-2">Add Position Form</h1>
                         </div>
                         <div class="inputs">
-                            <input type="text" name="position_name" placeholder="Position Name" class="form-control mb-3">
+                            <input type="text" name="name" placeholder="Position Name" class="form-control mb-3">
                         </div>
                         <input type="submit" value="Create" class="btn btn-success text-right w-100 text-center">
                     </div>

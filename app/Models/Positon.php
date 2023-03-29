@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Positon extends Model
 {
     use HasFactory;
-    protected $table = 'positions';
+    protected $table = 'positons';
     protected $fillable = [
         'name',
     ];
