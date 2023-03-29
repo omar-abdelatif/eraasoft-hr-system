@@ -7,11 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('employee', function (Blueprint $table) {
@@ -22,6 +17,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('address');
             $table->string('pastjob');
+            $table->string('position');
             $table->string('leader');
             $table->string('job_desc');
             $table->string('status');

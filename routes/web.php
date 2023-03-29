@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     //! Employee Routes
-    Route::get('addnew', [EmployeeController::class, 'addNew'])->name('Employee.addnew');
+    Route::get('addnew', [EmployeeController::class, 'addNew'])->name('Employee.addNew');
     Route::post('create',[EmployeeController::class,'create'])->name('Employee.create');
     Route::get('dashboard', [EmployeeController::class, 'ViewData'])->name('Admin.home');
     Route::get('employeelist', [EmployeeController::class, 'index'])->name('Employee.index');

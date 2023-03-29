@@ -21,11 +21,11 @@
         @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <div class="alert alert-danger">
-                    <p class="m-0 text-center">{{$error}}</p>
+                    <p class="m-0 text-center">{{ $error }}</p>
                 </div>
             @endforeach
         @endif
-        <form action="{{route('Employee.create')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('Employee.create') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -61,7 +61,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Upload Profile Img</label>
-                                <input type="file" id="inputProjectLeader" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
+                                <input type="file" id="inputProjectLeader" name="img" class="form-control p-0"
+                                    style="height: 2rem" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Upload Employee CV</label>
+                                <input type="file" id="inputProjectLeader" name="files" class="form-control p-0"
+                                    style="height: 2rem">
                             </div>
                         </div>
                     </div>
@@ -80,6 +86,19 @@
                             <div class="form-group">
                                 <label for="inputClientCompany">Employee Past Job</label>
                                 <input type="text" id="inputClientCompany" name="pastjob" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProjectLeader">Employee Position</label>
+                                <select name="leader" class="form-control">
+                                    <option selected>Choose The Position</option>
+                                    @if ($positionCount > 0)
+                                        @foreach ($positions as $position)
+                                            <option value="{{$position->name}}">{{$position->name}}</option>
+                                        @endforeach
+                                    @else
+                                        <h3 class="text-center">No Managers To Display</h3>
+                                    @endif
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="inputProjectLeader">Employee Leader</label>

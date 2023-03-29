@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Manager;
+use App\Models\Positon;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Manager;
-use App\Models\User;
 use Illuminate\Support\Facades\View;
 
 class EmployeeController extends Controller
@@ -19,7 +20,9 @@ class EmployeeController extends Controller
     }
     public function addNew()
     {
-        return view('Employee.addnew');
+        $positions = Positon::all();
+        $positionCount = Positon::count();
+        return view('Employee.addnew', compact('positions', 'positionCount'));
     }
     public function ViewData()
     {
@@ -45,12 +48,19 @@ class EmployeeController extends Controller
             'job_desc' => 'required',
             'status' => 'required',
             'salary' => 'required',
+            'files' => 'required|mimes:pdf|max:2048'
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
             $destinationPath = public_path('images/employee/');
             $img->move($destinationPath, $name);
+        }
+        if ($request->hasFile('files')) {
+            $files = $request->file('files');
+            $file_name = time() . '.' . $files->getClientOriginalExtension();
+            $Path = public_path('files/');
+            $files->move($Path, $name);
         }
         $store = Employee::create([
             "name" => $request->name,
@@ -59,11 +69,13 @@ class EmployeeController extends Controller
             "age" => $request->age,
             "address" => $request->address,
             "pastjob" => $request->pastjob,
+            "position" => $request->position,
             "leader" => $request->leader,
             "job_desc" => $request->job_desc,
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,
+            // "files" => $request->
         ]);
         if ($store) {
             return redirect()->route('Admin.home')->with('success', 'تمت الإضافة بنجاح');

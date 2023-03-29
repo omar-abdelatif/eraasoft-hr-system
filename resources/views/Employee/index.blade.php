@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <h1 class="text-right">
-                        <a href='{{route("Employee.addnew")}}' class="btn btn-success">Add New Employee</a>
+                        <a href='{{route("Employee.addNew")}}' class="btn btn-success">Add New Employee</a>
                     </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
