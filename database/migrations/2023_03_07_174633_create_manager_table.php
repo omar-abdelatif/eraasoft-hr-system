@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('ssn')->unique();
             $table->integer('age');
             $table->string('address');
+            $table->string('position');
             $table->string('job_desc');
             $table->string('status');
             $table->integer('salary');

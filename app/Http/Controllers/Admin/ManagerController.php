@@ -38,12 +38,19 @@ class ManagerController extends Controller
             'job_desc' => 'required',
             'status' => 'required',
             'salary' => 'required',
+            'pdf' => 'required|mimes:pdf|max:2048'
         ]);
         if (request()->hasFile('img')) {
             $img = request()->file('img');
             $name = time() . '.' . $img->getClientOriginalExtension();
             $destinationPath = public_path('images/manager/');
             $img->move($destinationPath, $name);
+        }
+        if ($request->hasFile('pdf')) {
+            $files = $request->file('pdf');
+            $file_name = time() . '.' . $files->getClientOriginalExtension();
+            $Path = public_path('files/');
+            $files->move($Path, $file_name);
         }
         $store = Manager::create([
             "name" => $request->name,
@@ -55,6 +62,8 @@ class ManagerController extends Controller
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,
+            'position' => $request->position,
+            'pdf' => $file_name
         ]);
         if ($store) {
             $managers = Manager::all();

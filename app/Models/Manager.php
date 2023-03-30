@@ -19,5 +19,7 @@ class Manager extends Model
         'status',
         'salary',
         'img',
+        'pdf',
+        'position'
     ];
 }

@@ -63,6 +63,10 @@
                                 <label for="inputStatus">Upload Profile Img</label>
                                 <input type="file" id="inputProjectLeader" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
                             </div>
+                            <div class="form-group">
+                                <label for="inputStatus">Upload CV</label>
+                                <input type="file" id="inputProjectLeader" name="pdf" class="form-control p-0" style="height: 2rem" accept="application/pdf">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +84,7 @@
                             <div class="form-group">
                                 <label for="inputStatus">Status</label>
                                 <select id="inputStatus" name="status" class="form-control custom-select">
-                                    <option selected="" disabled="">Select one</option>
+                                    <option selected>Select one</option>
                                     <option value="Pending">Pending</option>
                                     <option value="Rejected">Rejected</option>
                                     <option value="Approved">Approved</option>

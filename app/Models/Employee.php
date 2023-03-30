@@ -21,5 +21,7 @@ class Employee extends Model
         'status',
         'salary',
         'img',
+        'pdf',
+        'position'
     ];
 }
