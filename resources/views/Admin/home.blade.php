@@ -117,7 +117,7 @@
                                         <td>{{ $employee->phone_number }}</td>
                                         <td>{{ $employee->ssn }}</td>
                                         <td>{{ $employee->address }}</td>
-                                        {{-- <td>{{$employee->position}}</td> --}}
+                                        <td>{{$employee->position}}</td>
                                         <td>{{ $employee->pastjob }}</td>
                                         <td>{{ $employee->leader }}</td>
                                         <td>{{ $employee->job_desc }}</td>
@@ -126,10 +126,18 @@
                                         <td>
                                             <img class="img-circle elevation-2" width="50px" src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
-                                        {{-- <td>{{ $employee->pdf}}</td> --}}
                                         <td>
-                                            <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>
-                                            <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">Delete</a>
+                                            <a href="{{asset('files/' . $employee->pdf)}}" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                                                <i class="far fa-file-pdf fa-2x" style="color: #000"></i>
+                                            </a>
+                                        </td>
+                                        <td class="d-flex">
+                                            <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">
+                                                <i class="fas fa-edit" style="color: #000000;"></i>
+                                            </a>
+                                            <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">
+                                                <i class="fas fa-trash-alt" style="color: #ffffff;"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

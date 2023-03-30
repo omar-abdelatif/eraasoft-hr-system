@@ -102,14 +102,10 @@
                             <div class="form-group">
                                 <label for="inputProjectLeader">Employee Leader</label>
                                 <select name="leader" class="form-control">
-                                    <option selected>Choose The Position</option>
-                                    @if ($managerCount > 0)
-                                        @foreach ($manager as $manager)
-                                            <option value="{{$manager->name}}">{{$manager->name}}</option>
-                                        @endforeach
-                                    @else
-                                        <h3 class="text-center">No Managers To Display</h3>
-                                    @endif
+                                    <option selected>Choose The Manager</option>
+                                    @foreach ($manager as $manager)
+                                        <option value="{{$manager->name}}">{{$manager->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

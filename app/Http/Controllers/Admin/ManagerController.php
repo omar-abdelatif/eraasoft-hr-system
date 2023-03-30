@@ -87,6 +87,12 @@ class ManagerController extends Controller
                     unlink($oldImagePath);
                 }
             }
+            if ($manageer->pdf !== null) {
+                $oldPdfPath = public_path('files/' . $manageer->pdf);
+                if (file_exists($oldPdfPath)) {
+                    unlink($oldPdfPath);
+                }
+            }
             $manageer->delete();
             return redirect()->route('Manager.index')->with([
                 'success' => 'Manager Deleted Successfully',

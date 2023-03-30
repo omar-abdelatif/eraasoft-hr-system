@@ -100,6 +100,12 @@ class EmployeeController extends Controller
                     unlink($oldImagePath);
                 }
             }
+            if ($employee->pdf !== null) {
+                $oldPdfPath = public_path('files/' . $employee->pdf);
+                if (file_exists($oldPdfPath)) {
+                    unlink($oldPdfPath);
+                }
+            }
             $employee->delete();
             return redirect()->route('Admin.home')->with([
                 'success' => 'Employee Deleted Successfully',
@@ -115,8 +121,9 @@ class EmployeeController extends Controller
     }
     public function edit($id)
     {
+        $employees = Employee::all();
         $edit = Employee::find($id);
-        return view("Employee.edit", compact("edit"));
+        return view("Employee.edit", compact("edit", "employees"));
     }
     public function update(Request $request)
     {
