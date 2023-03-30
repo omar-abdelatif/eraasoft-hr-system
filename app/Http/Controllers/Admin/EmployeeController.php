@@ -135,6 +135,13 @@ class EmployeeController extends Controller
                 unlink($oldImagePath);
             }
         }
+        //! Delete Old Pdf
+        if ($request->hasFile('pdf') && $employee->pdf !== null) {
+            $oldPdfPath = public_path('files/' . $employee->pdf);
+            if (file_exists($oldPdfPath)) {
+                unlink($oldPdfPath);
+            }
+        }
         //! Insert New Image
         if ($request->hasFile('img') && $request->file('img')->isValid()) {
             $EmployeeFile = $request->file('img');
@@ -142,6 +149,14 @@ class EmployeeController extends Controller
             $destinationPath = public_path('images/employee');
             $EmployeeFile->move($destinationPath, $name);
             $employee->img = $name;
+        }
+        //! Insert New Pdf
+        if ($request->hasFile('pdf') && $request->file('pdf')->isValid()) {
+            $files = $request->file('pdf');
+            $file_name = time() . '.' . $files->getClientOriginalExtension();
+            $Path = public_path('files/');
+            $files->move($Path, $file_name);
+            $employee->pdf = $file_name;
         }
         //! Update User Data
         $employee->name = $request->name;

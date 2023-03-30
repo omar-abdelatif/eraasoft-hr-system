@@ -117,6 +117,13 @@ class ManagerController extends Controller
                 unlink($oldImagePath);
             }
         }
+        //! Delete Old Pdf
+        if ($request->hasFile('pdf') && $manager->pdf !== null) {
+            $oldPdfPath = public_path('files/' . $manager->pdf);
+            if (file_exists($oldPdfPath)) {
+                unlink($oldPdfPath);
+            }
+        }
         //! Insert New Image
         if ($request->hasFile('img') && $request->file('img')->isValid()) {
             $ManagerFile = $request->file('img');
@@ -124,6 +131,14 @@ class ManagerController extends Controller
             $destinationPath = public_path('images/manager');
             $ManagerFile->move($destinationPath, $name);
             $manager->img = $name;
+        }
+        //! Insert New Pdf
+        if ($request->hasFile('pdf') && $request->file('pdf')->isValid()) {
+            $files = $request->file('pdf');
+            $file_name = time() . '.' . $files->getClientOriginalExtension();
+            $Path = public_path('files/');
+            $files->move($Path, $file_name);
+            $manager->pdf = $file_name;
         }
         //! Update User Data
         $manager->name = $request->name;
