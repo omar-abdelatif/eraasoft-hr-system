@@ -37,7 +37,9 @@
                                 <td class="text-center">Job Description</td>
                                 <td class="text-center">Status</td>
                                 <td class="text-center">Salary</td>
+                                <td class="text-center">Position</td>
                                 <td class="text-center">Profile Image</td>
+                                <td class="text-center">Files</td>
                                 <td class="text-center">Action</td>
                             </tr>
                         </thead>
@@ -54,10 +56,16 @@
                                         <td>{{ $manager->job_desc }}</td>
                                         <td>{{ $manager->status }}</td>
                                         <td>{{ $manager->salary }}</td>
+                                        <td>{{ $manager->position }}</td>
                                         <td>
                                             <img class="img-circle elevation-2" width="50px"
                                                 src="{{ asset('images/manager/' . $manager->img) }}"
                                                 alt="{{ $manager->name }}">
+                                        </td>
+                                        <td>
+                                            <a href="{{asset('files/' . $manager->pdf)}}" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                                                <i class="far fa-file-pdf fa-2x" style="color: #000"></i>
+                                            </a>
                                         </td>
                                         <td>
                                             <a href='{{ url("editmanager/$manager->id") }}' class="btn btn-warning">Edit</a>

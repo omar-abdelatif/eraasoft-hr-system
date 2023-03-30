@@ -96,13 +96,14 @@
                                 <td class="text-center">Phone Number</td>
                                 <td class="text-center">SSN</td>
                                 <td class="text-center">Address</td>
-                                <td class="text-center">Files</td>
+                                <td class="text-center">Position</td>
                                 <td class="text-center">Past Job</td>
                                 <td class="text-center">Leader</td>
                                 <td class="text-center">Job Description</td>
                                 <td class="text-center">Status</td>
                                 <td class="text-center">Salary</td>
                                 <td class="text-center">Profile Image</td>
+                                <td class="text-center">Files</td>
                                 <td class="text-center">Action</td>
                             </tr>
                         </thead>
@@ -116,7 +117,7 @@
                                         <td>{{ $employee->phone_number }}</td>
                                         <td>{{ $employee->ssn }}</td>
                                         <td>{{ $employee->address }}</td>
-                                        <td>{{ $employee->pdf}}</td>
+                                        {{-- <td>{{$employee->position}}</td> --}}
                                         <td>{{ $employee->pastjob }}</td>
                                         <td>{{ $employee->leader }}</td>
                                         <td>{{ $employee->job_desc }}</td>
@@ -125,6 +126,7 @@
                                         <td>
                                             <img class="img-circle elevation-2" width="50px" src="{{ asset('images/employee/' . $employee->img) }}" alt="{{ $employee->name }}">
                                         </td>
+                                        {{-- <td>{{ $employee->pdf}}</td> --}}
                                         <td>
                                             <a href='{{ url("edit/$employee->id") }}' class="btn btn-warning">Edit</a>
                                             <a href='{{ url("delete/$employee->id") }}' class="btn btn-danger">Delete</a>
