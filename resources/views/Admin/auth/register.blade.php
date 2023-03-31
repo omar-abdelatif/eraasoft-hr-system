@@ -63,6 +63,20 @@
                 </div>
             </div>
 
+            {{-- <div class="input-group mb-3">
+                <input type="file" name="img" class="form-control p-0 @error('img') is-invalid @enderror" style="height: 2rem;" accept="image/*" required>
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+                @error('img')
+                    <span class="error invalid-feedback">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div> --}}
+
             <div class="row">
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Register') }}</button>
