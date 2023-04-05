@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DepartmantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('allpositions', [PositionContrller::class, 'viewData'])->name('positions.show');
     Route::view('addposition', 'positions.addnew')->name('positions.addnew');
     Route::post('create_position', [PositionContrller::class, 'store'])->name('positions.store');
+    Route::get('editposition/{id}', [PositionContrller::class, 'edit'])->name('positions.edit');
+    Route::get('deleteposition/{id}', [PositionContrller::class, 'delete'])->name('position.delete');
+    Route::post('updateposition', [PositionContrller::class, 'update'])->name('position.update');
     //! Department Routes
     //! Branch Routes
     //! Payment Routes

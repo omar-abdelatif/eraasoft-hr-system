@@ -32,11 +32,20 @@ class PositionContrller extends Controller
     }
     public function edit($id)
     {
+        $edit = Positon::find($id);
+        return view("positions.edit", compact("edit"));
     }
     public function delete($id)
     {
+        $position = Positon::find($id);
+        if ($position) {
+            $position->delete();
+            return redirect()->route('positions.show')->with('success', 'Manager Deleted Successfully');
+        }
+        return redirect()->route("positions.show")->withErrors('Something Went Wrong While Deleting');
     }
     public function update(Request $request)
     {
+        dd($request);
     }
 }

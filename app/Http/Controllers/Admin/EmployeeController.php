@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Manager;
 use App\Models\Positon;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -34,7 +35,18 @@ class EmployeeController extends Controller
         $employeesCount = Employee::count();
         $manager = DB::table('manager')->get();
         $managerCount = $manager->count();
-        return  view('Admin.home', compact('employees', 'employeesCount', 'admin', 'adminCount', 'manager', 'managerCount'));
+        $departments = Department::all();
+        $departmentCount = Department::count();
+        return  view('Admin.home', compact(
+            'employees',
+            'employeesCount',
+            'admin',
+            'adminCount',
+            'manager',
+            'managerCount',
+            'departments',
+            'departmentCount'
+        ));
     }
     public function create(Request $request)
     {

@@ -30,6 +30,7 @@
                             <tr class="text-center">
                                 <td class="text-center">#</td>
                                 <td class="text-center">Position Name</td>
+                                <td>Actions</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,10 @@
                                     <tr>
                                         <td>{{$position->id}}</td>
                                         <td>{{$position->name}}</td>
+                                        <td>
+                                            <a href="{{url("editposition/$position->id")}}" class="btn btn-warning">Edit</a>
+                                            <a href="{{url("deleteposition/$position->id")}}" class="btn btn-danger">Delete</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
