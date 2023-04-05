@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <div class="form-group d-none">
                                 <label for="inputName">Manager Id</label>
-                                <input type="text" id="inputName" value="{{$edit->id}}" name="id" class="form-control">
+                                <input type="hidden" id="inputName" value="{{$edit->id}}" name="id" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Manager Name</label>

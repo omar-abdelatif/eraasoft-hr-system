@@ -25,7 +25,6 @@
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
                         {{ __('Departments') }}
-                        <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
             </li>

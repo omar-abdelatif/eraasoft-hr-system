@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Add Department') }}</h1>
-                </div><!-- /.col -->
+                    <h1 class="m-0">{{ __('All Departments') }}</h1>
+                </div>
                 <div class="col-sm-6">
                     <h1 class="text-right mb-3">
                         <a href="{{ route('departments.addnew') }}" class="btn btn-success">{{ __('Add New Department')}}</a>
                     </h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-12">
                     @if ($errors->any())
                         @foreach ($errors->all() as $error)
@@ -39,8 +39,8 @@
                                 @foreach ($departments as $departments)
                                     <tr>
                                         <td>{{$departments->id}}</td>
-                                        <td>{{$department->manager_name}}</td>
                                         <td>{{$departments->name}}</td>
+                                        <td>{{$departments->manager_name}}</td>
                                         <td>
                                             <a href="{{url("editdepartment/$departments->id")}}" class="btn btn-warning">Edit</a>
                                             <a href="{{url("deletedepartment/$departments->id")}}" class="btn btn-danger">Delete</a>
@@ -53,8 +53,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </div>
     <!-- /.content-header -->
 @endsection

@@ -25,7 +25,7 @@
                 </div>
             @endforeach
         @endif
-        <form action="{{route('positions.store')}}" method="post">
+        <form action="{{route('departments.create')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -37,11 +37,10 @@
                             <input type="text" name="name" placeholder="Department Name" class="form-control mb-3">
                             <select name="manager_name" class="form-control mb-3 custom-select">
                                 <option selected>Select one</option>
-                                @foreach ($departments as $department)
-                                    <option value="{{$department->name}}">{{$department->name}}</option>
+                                @foreach ($manager as $manager)
+                                    <option value="{{$manager->name}}">{{$manager->name}}</option>
                                 @endforeach
                             </select>
-                            <input type="text" name="manager_name" placeholder="Manager Name" class="form-control mb-3">
                         </div>
                         <input type="submit" value="Create" class="btn btn-success text-right w-100 text-center">
                     </div>

@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::get('alldepartments', [DepartmantController::class, 'index'])->name('departments.index');
     Route::get('newdepartments', [DepartmantController::class, 'addNew'])->name('departments.addnew');
     Route::post('storedepartment', [DepartmantController::class, 'create'])->name('departments.create');
+    Route::get('deletedepartment/{id}', [DepartmantController::class, 'destroy'])->name('departments.destroy');
+    Route::get('editdepartment/{id}', [DepartmantController::class, 'edit'])->name('departments.edit');
+    Route::post('updatedepartment', [DepartmantController::class, 'update'])->name('departments.update');
     //! Branch Routes
     //! Payment Routes
     //! Application Routes

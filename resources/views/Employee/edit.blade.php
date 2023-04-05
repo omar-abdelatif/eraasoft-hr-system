@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Employee Phone Number</label>
-                                <input type="number" id="inputName" value="{{ +20 . $edit->phone_number }}"
+                                <input type="number" id="inputName" value="{{ $edit->phone_number }}"
                                     name="phone_number" class="form-control">
                             </div>
                             <div class="form-group">
