@@ -40,12 +40,19 @@ class PositionContrller extends Controller
         $position = Positon::find($id);
         if ($position) {
             $position->delete();
-            return redirect()->route('positions.show')->with('success', 'Manager Deleted Successfully');
+            return redirect()->route('positions.show')->with('success', 'Position Deleted Successfully');
         }
         return redirect()->route("positions.show")->withErrors('Something Went Wrong While Deleting');
     }
     public function update(Request $request)
     {
-        dd($request);
+        //! Get The ID
+        $position = Positon::find($request->id);
+        //! Update The Position Name
+        $position->name = $request->name;
+        $update = $position->save();
+        if ($update) {
+            return redirect()->route("positions.show")->with('success', 'Position Updated Successfully',);
+        }
     }
 }

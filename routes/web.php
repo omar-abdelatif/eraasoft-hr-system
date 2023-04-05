@@ -45,9 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::view('addposition', 'positions.addnew')->name('positions.addnew');
     Route::post('create_position', [PositionContrller::class, 'store'])->name('positions.store');
     Route::get('editposition/{id}', [PositionContrller::class, 'edit'])->name('positions.edit');
-    Route::get('deleteposition/{id}', [PositionContrller::class, 'delete'])->name('position.delete');
-    Route::post('updateposition', [PositionContrller::class, 'update'])->name('position.update');
+    Route::get('deleteposition/{id}', [PositionContrller::class, 'delete'])->name('positions.delete');
+    Route::post('updateposition', [PositionContrller::class, 'update'])->name('positions.update');
     //! Department Routes
+    Route::get('alldepartments', [DepartmantController::class, 'index'])->name('departments.index');
+    Route::get('newdepartments', [DepartmantController::class, 'addNew'])->name('departments.addnew');
+    Route::post('storedepartment', [DepartmantController::class, 'create'])->name('departments.create');
     //! Branch Routes
     //! Payment Routes
     //! Application Routes

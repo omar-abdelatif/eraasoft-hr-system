@@ -21,27 +21,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('departments.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-circle nav-icon"></i>
                     <p>
-                        {{ __('Department') }}
+                        {{ __('Departments') }}
                         <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item ml-4">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>All Departments </p>
-                        </a>
-                    </li>
-                    <li class="nav-item ml-4">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Add Department</p>
-                        </a>
-                    </li>
-                </ul>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">

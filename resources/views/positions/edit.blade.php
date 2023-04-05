@@ -18,14 +18,7 @@
         </div>
     </section>
     <section class="content">
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger">
-                    <p class="m-0 text-center">{{$error}}</p>
-                </div>
-            @endforeach
-        @endif
-        <form action="{{route('position.update')}}" method="post">
+        <form action="{{route('positions.update')}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-12">
@@ -34,6 +27,7 @@
                             <h1 class="text-center mt-2 mb-2">Edit Position Form</h1>
                         </div>
                         <div class="inputs">
+                            <input type="hidden" value="{{$edit->id}}" name="id" placeholder="Position Id" class="form-control mb-3 text-center">
                             <input type="text" name="name" placeholder="Position Name" value="{{$edit->name}}" class="form-control mb-3">
                         </div>
                         <input type="submit" value="Update" class="btn btn-success text-right w-100 text-center">
