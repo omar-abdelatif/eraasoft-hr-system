@@ -2,3 +2,10 @@
 {
     width: 100% !important;
 }
+.resume {
+    background-color: #d5f5e3
+}
+.resumecaption{
+    text-decoration: underline;
+    font-size: 25px;
+}

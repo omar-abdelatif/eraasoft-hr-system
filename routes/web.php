@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get("delete/{id}", [EmployeeController::class, 'delete'])->name('Employee.delete');
     Route::get("edit/{id}", [EmployeeController::class, 'edit'])->name('Employee.edit');
     Route::post("update", [EmployeeController::class, 'update'])->name('Employee.update');
+    // Route::get('man-profile', [EmployeeController::class, 'profile'])->name('profile.show');
     //! Manager Routes
     Route::get('addmanager', [ManagerController::class, 'addNew'])->name('Manager.addNew');
     Route::post('store', [ManagerController::class, 'create'])->name('Manager.create');
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('deletemanager/{id}', [ManagerController::class, 'delete'])->name('Manager.delete');
     Route::get('editmanager/{id}', [ManagerController::class, 'edit'])->name('Manager.edit');
     Route::post('updatemanager', [ManagerController::class, 'update'])->name('Manager.update');
+    Route::get('man-profile/{id}', [ManagerController::class, 'profile'])->name('Manager.profile');
     //! Position Routes
     Route::get('allpositions', [PositionContrller::class, 'viewData'])->name('positions.show');
     Route::view('addposition', 'positions.addnew')->name('positions.addnew');

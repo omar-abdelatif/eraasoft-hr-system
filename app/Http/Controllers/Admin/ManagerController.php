@@ -6,6 +6,7 @@ use App\Models\Manager;
 use App\Models\Positon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 
 class ManagerController extends Controller
 {
@@ -161,5 +162,11 @@ class ManagerController extends Controller
             ]);
         }
         return redirect()->route('Manager.index')->with('error', 'Error While Updating');
+    }
+    public function profile($id)
+    {
+        $department = Department::all();
+        $manager = Manager::find($id);
+        return view('Manager.profile', compact('manager', 'department'));
     }
 }

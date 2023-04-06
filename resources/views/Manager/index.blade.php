@@ -70,6 +70,7 @@
                                         <td>
                                             <a href='{{ url("editmanager/$manager->id") }}' class="btn btn-warning">Edit</a>
                                             <a href='{{ url("deletemanager/$manager->id") }}' class="btn btn-danger">Delete</a>
+                                            <a href='{{url("man-profile/$manager->id")}}' class="btn btn-success">Profile</a>
                                         </td>
                                     </tr>
                                 @endforeach
