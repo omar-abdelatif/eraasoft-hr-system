@@ -72,7 +72,7 @@
                                     </span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Branches</span>
-                                        <span class="info-box-number">13,648</span>
+                                        <span class="info-box-number">{{$countBranches}}</span>
                                     </div>
                                 </div>
                             </div>

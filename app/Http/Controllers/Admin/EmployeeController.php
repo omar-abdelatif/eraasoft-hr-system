@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Manager;
 use App\Models\Positon;
+use App\Models\Branches;
 use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
 
 class EmployeeController extends Controller
 {
@@ -37,6 +37,7 @@ class EmployeeController extends Controller
         $managerCount = $manager->count();
         $departments = Department::all();
         $departmentCount = Department::count();
+        $countBranches = Branches::count();
         return  view('Admin.home', compact(
             'employees',
             'employeesCount',
@@ -45,7 +46,8 @@ class EmployeeController extends Controller
             'manager',
             'managerCount',
             'departments',
-            'departmentCount'
+            'departmentCount',
+            'countBranches'
         ));
     }
     public function create(Request $request)
@@ -108,6 +110,7 @@ class EmployeeController extends Controller
             $managerCount = Manager::count();
             $departments = Department::all();
             $departmentCount = Department::count();
+            $countBranches = Branches::count();
             if ($employee->img !== null) {
                 $oldImagePath = public_path('images/employee/' . $employee->img);
                 if (file_exists($oldImagePath)) {
@@ -130,7 +133,8 @@ class EmployeeController extends Controller
                 'manager' => $manager,
                 'managerCount' => $managerCount,
                 'departments' => $departments,
-                'departmentCount' => $departmentCount
+                'departmentCount' => $departmentCount,
+                'countBranches' => $countBranches
             ]);
         }
         return redirect()->route('Admin.home')->with('error', 'Something Bad Happen');
@@ -195,6 +199,7 @@ class EmployeeController extends Controller
             $managerCount = Manager::count();
             $departments = Department::all();
             $departmentCount = Department::count();
+            $countBranches = Branches::count();
             return redirect()->route('Admin.home')->with([
                 'success' => 'Employee Updated Successfully',
                 'employeesCount' => $employeesCount,
@@ -204,7 +209,8 @@ class EmployeeController extends Controller
                 'manager' => $manager,
                 'managerCount' => $managerCount,
                 'departments' => $departments,
-                'departmentCount' => $departmentCount
+                'departmentCount' => $departmentCount,
+                'countBranches' => $countBranches
             ]);
         }
         return redirect()->route('Admin.home')->with('error', 'Error While Updating');

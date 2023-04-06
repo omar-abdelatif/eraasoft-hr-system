@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BranchesController;
 use App\Http\Controllers\Admin\DepartmantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -55,8 +56,14 @@ Route::middleware('auth')->group(function () {
     Route::get('editdepartment/{id}', [DepartmantController::class, 'edit'])->name('departments.edit');
     Route::post('updatedepartment', [DepartmantController::class, 'update'])->name('departments.update');
     //! Branch Routes
-    //! Payment Routes
+    Route::get('allbranches', [BranchesController::class, 'index'])->name('Branches.show');
+    Route::get('newbranche', [BranchesController::class, 'addNew'])->name('Branche.addnew');
+    Route::post('create', [BranchesController::class, 'store'])->name('Branche.create');
+    Route::get('branche/{id}', [BranchesController::class, 'edit'])->name('Branche.edit');
+    Route::get('destroy/{id}', [BranchesController::class, 'destroy'])->name('Branche.destroy');
+    Route::post('update', [BranchesController::class, 'update'])->name('Branche.update');
     //! Application Routes
+    //! Payment Routes
     //! Leave Routes
     //! Attendance Routes
 });

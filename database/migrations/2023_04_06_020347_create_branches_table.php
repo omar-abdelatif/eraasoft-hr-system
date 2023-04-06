@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('branches', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->autoIncrement();
             $table->string('name');
             $table->string('location');
             $table->string('manager_name');

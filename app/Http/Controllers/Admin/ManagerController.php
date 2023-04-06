@@ -69,6 +69,7 @@ class ManagerController extends Controller
             $managers = Manager::all();
             $managersCount = Manager::count();
             return view('Manager.index')->with([
+                'success' => 'Manager Stored Successfully',
                 'managers' => $managers,
                 'managersCount' => $managersCount
             ]);
