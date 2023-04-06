@@ -106,6 +106,8 @@ class EmployeeController extends Controller
             $adminCount = User::count();
             $manager = Manager::all();
             $managerCount = Manager::count();
+            $departments = Department::all();
+            $departmentCount = Department::count();
             if ($employee->img !== null) {
                 $oldImagePath = public_path('images/employee/' . $employee->img);
                 if (file_exists($oldImagePath)) {
@@ -126,7 +128,9 @@ class EmployeeController extends Controller
                 'admin' => $admin,
                 'adminCount' => $adminCount,
                 'manager' => $manager,
-                'managerCount' => $managerCount
+                'managerCount' => $managerCount,
+                'departments' => $departments,
+                'departmentCount' => $departmentCount
             ]);
         }
         return redirect()->route('Admin.home')->with('error', 'Something Bad Happen');
@@ -189,6 +193,8 @@ class EmployeeController extends Controller
             $adminCount = User::count();
             $manager = Manager::all();
             $managerCount = Manager::count();
+            $departments = Department::all();
+            $departmentCount = Department::count();
             return redirect()->route('Admin.home')->with([
                 'success' => 'Employee Updated Successfully',
                 'employeesCount' => $employeesCount,
@@ -196,7 +202,9 @@ class EmployeeController extends Controller
                 'admin' => $admin,
                 'adminCount' => $adminCount,
                 'manager' => $manager,
-                'managerCount' => $managerCount
+                'managerCount' => $managerCount,
+                'departments' => $departments,
+                'departmentCount' => $departmentCount
             ]);
         }
         return redirect()->route('Admin.home')->with('error', 'Error While Updating');

@@ -31,8 +31,8 @@
                             <input type="text" name="name" placeholder="Department Name" value="{{$depart->name}}" class="form-control mb-3">
                             <select name="manager_name" class="form-control custom_select mb-3">
                                 <option selected>Choose Manager</option>
-                                @foreach ($depart as $item)
-                                    <option value="{{$item->manager_name}}">{{$item->manager_name}}</option>
+                                @foreach ($manager as $manager)
+                                    <option value="{{$manager->name}}" {{$manager->name == $depart->manager_name ? 'selected' : ''}}>{{$manager->name}}</option>
                                 @endforeach
                             </select>
                         </div>

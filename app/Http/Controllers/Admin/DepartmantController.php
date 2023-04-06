@@ -47,8 +47,9 @@ class DepartmantController extends Controller
     }
     public function edit($id)
     {
+        $manager = Manager::all();
         $depart = Department::find($id);
-        return view('Departments.edit', compact('depart'));
+        return view('Departments.edit', compact('depart', 'manager'));
     }
     public function update(Request $request)
     {
