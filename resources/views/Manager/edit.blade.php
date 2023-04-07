@@ -68,6 +68,11 @@
                                 <input type="file" id="inputProjectLeader" value="{{$edit->img}}" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
                             </div>
                             <img src="{{asset('images/manager/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto mb-3 rounded-circle" width="100">
+                            <div class="form-group">
+                                <label for="inputStatus">Upload Profile Img</label>
+                                <input type="file" id="inputProjectLeader" value="{{$edit->img}}" name="img" class="form-control p-0" style="height: 2rem" accept="image/*">
+                            </div>
+                            <img src="{{asset('images/manager/' . $edit->img)}}" alt="{{$edit->name}}" class="d-block mx-auto mb-3 rounded-circle" width="100">
                         </div>
                     </div>
                 </div>

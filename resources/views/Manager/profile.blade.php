@@ -70,12 +70,12 @@
                     <div class="manager-cv-info">
                         <div class="row">
                             <div class="col-12">
-                                <p class="resumecaption text-center">Positional Information</p>
+                                <p class="resumecaption text-center bg-info p-3">Positional Information</p>
                                 <table class="table table-hover" width="100%">
                                     <tbody>
                                         <tr>
                                             <th>Position</th>
-                                            <td>Backend</td>
+                                            <td>{{$manager->position}}</td>
                                         </tr>
                                         <tr>
                                             <th>Duty Type</th>
@@ -90,20 +90,8 @@
                                             <td>{{$manager->created_at}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Rate Type</th>
-                                            <td>Hourly</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Pay Frequency</th>
-                                            <td>Monthly</td>
-                                        </tr>
-                                        <tr>
                                             <th>Home Department</th>
                                             <td>Soon</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Supervisor Name</th>
-                                            <td>Self</td>
                                         </tr>
                                     </tbody>
                                 </table>

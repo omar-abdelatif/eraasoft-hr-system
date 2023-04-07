@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('job_desc');
             $table->string('status');
             $table->integer('salary');
+            $table->string('duty_type');
             $table->string('img');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));

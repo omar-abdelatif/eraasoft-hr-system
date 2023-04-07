@@ -38,6 +38,7 @@ class ManagerController extends Controller
             'img' => 'required|image|max:2048|mimes:png,jpg,jpeg,webp,gif',
             'job_desc' => 'required',
             'status' => 'required',
+            'duty_type' => 'required|in:full_time, part_time',
             'salary' => 'required',
             'pdf' => 'required|mimes:pdf|max:2048'
         ]);
@@ -63,6 +64,7 @@ class ManagerController extends Controller
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,
+            "duty_type" => $request->duty_type,
             'position' => $request->position,
             'pdf' => $file_name
         ]);
@@ -165,7 +167,6 @@ class ManagerController extends Controller
     }
     public function profile($id)
     {
-        $department = Department::all();
         $manager = Manager::find($id);
         return view('Manager.profile', compact('manager', 'department'));
     }

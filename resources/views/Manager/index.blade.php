@@ -38,6 +38,7 @@
                                 <td class="text-center">Status</td>
                                 <td class="text-center">Salary</td>
                                 <td class="text-center">Position</td>
+                                <td class="text-center">Duty Type</td>
                                 <td class="text-center">Profile Image</td>
                                 <td class="text-center">Files</td>
                                 <td class="text-center">Action</td>
@@ -57,6 +58,7 @@
                                         <td>{{ $manager->status }}</td>
                                         <td>{{ $manager->salary }}</td>
                                         <td>{{ $manager->position }}</td>
+                                        <td>{{ $manager->duty_type }}</td>
                                         <td>
                                             <img class="img-circle elevation-2" width="50px"
                                                 src="{{ asset('images/manager/' . $manager->img) }}"

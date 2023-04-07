@@ -100,6 +100,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="inputStatus">Duty Type</label>
+                                <select id="inputStatus" name="duty_type" class="form-control custom-select">
+                                    <option selected>Select one</option>
+                                    <option value="part_time">Part Time</option>
+                                    <option value="full_time">Full Time</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputSalary">Manager Salary</label>
                                 <input type="number" id="inputSalary" name="salary" class="form-control">
                             </div>
