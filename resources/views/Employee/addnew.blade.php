@@ -25,7 +25,7 @@
                 </div>
             @endforeach
         @endif
-        <form action="{{ route('Employee.create') }}" method="post" enctype="multipart/form-data">
+        <form action="{{url('create')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">

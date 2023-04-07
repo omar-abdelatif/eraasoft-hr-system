@@ -100,6 +100,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="inputStatus">Department</label>
+                                <select id="inputStatus" name="department" class="form-control custom-select">
+                                    <option selected>Select one</option>
+                                    @foreach ($depart as $item)
+                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="inputStatus">Duty Type</label>
                                 <select id="inputStatus" name="duty_type" class="form-control custom-select">
                                     <option selected>Select one</option>

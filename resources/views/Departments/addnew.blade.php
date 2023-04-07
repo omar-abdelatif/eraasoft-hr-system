@@ -35,12 +35,6 @@
                         </div>
                         <div class="inputs">
                             <input type="text" name="name" placeholder="Department Name" class="form-control mb-3">
-                            <select name="manager_name" class="form-control mb-3 custom-select">
-                                <option selected>Select one</option>
-                                @foreach ($manager as $manager)
-                                    <option value="{{$manager->name}}">{{$manager->name}}</option>
-                                @endforeach
-                            </select>
                         </div>
                         <input type="submit" value="Create" class="btn btn-success text-right w-100 text-center">
                     </div>

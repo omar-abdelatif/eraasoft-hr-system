@@ -11,6 +11,9 @@
                         <li class="breadcrumb-item">
                             <a href="{{ route('Admin.home') }}">Home</a>
                         </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('positions.show') }}">All Positions</a>
+                        </li>
                         <li class="breadcrumb-item active">Position Add</li>
                     </ol>
                 </div>

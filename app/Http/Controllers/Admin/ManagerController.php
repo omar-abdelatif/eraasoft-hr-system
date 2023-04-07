@@ -25,7 +25,8 @@ class ManagerController extends Controller
         $positionCount = Positon::count();
         $manager = Manager::all();
         $managerCount = Manager::count();
-        return view('Manager.addNew', compact('positions', 'positionCount', 'manager', 'managerCount'));
+        $depart = Department::all();
+        return view('Manager.addNew', compact('positions', 'positionCount', 'manager', 'managerCount', 'depart'));
     }
     public function create(Request $request)
     {
