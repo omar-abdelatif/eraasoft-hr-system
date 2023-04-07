@@ -39,7 +39,7 @@ class ManagerController extends Controller
             'img' => 'required|image|max:2048|mimes:png,jpg,jpeg,webp,gif',
             'job_desc' => 'required',
             'status' => 'required',
-            'duty_type' => 'required|in:full_time, part_time',
+            'duty_type' => 'required|in:full_time,part_time',
             'salary' => 'required',
             'pdf' => 'required|mimes:pdf|max:2048'
         ]);

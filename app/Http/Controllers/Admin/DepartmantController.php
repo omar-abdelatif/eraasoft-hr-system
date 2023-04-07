@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Manager;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,19 +16,13 @@ class DepartmantController extends Controller
     }
     public function addNew()
     {
-        $manager = Manager::all();
-        $managerCount = Manager::count();
-        return view('Departments.addnew', compact('manager', 'managerCount'));
+        return view('Departments.addnew');
     }
     public function create(Request $request)
     {
-        $Validator = $request->validate([
-            'name' => 'required|string',
-            'manager_name' => 'required|string'
+        $Validator = $request->validate(['name' => 'required|string',
         ]);
-        $store = Department::create([
-            'name' => $request->name,
-            'manager_name' => $request->manager_name
+        $store = Department::create(['name' => $request->name,
         ]);
         if ($store) {
             return redirect()->route('departments.index')->with('success', 'Department Created Successfuly');
@@ -47,16 +40,14 @@ class DepartmantController extends Controller
     }
     public function edit($id)
     {
-        $manager = Manager::all();
         $depart = Department::find($id);
-        return view('Departments.edit', compact('depart', 'manager'));
+        return view('Departments.edit', compact('depart'));
     }
     public function update(Request $request)
     {
         $depart = Department::find($request->id);
         if ($depart) {
             $depart->name = $request->name;
-            $depart->manager_name = $request->manager_name;
             $update = $depart->save();
             if ($update) {
                 return redirect()->route('departments.index')->with('success', 'Department Updated Successfully');

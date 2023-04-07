@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('manager', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->string('name');
-            $table->integer('phone_number')->unique();
-            $table->integer('ssn')->unique();
+            $table->bigInteger('phone_number')->unique();
+            $table->bigInteger('ssn')->unique();
             $table->integer('age');
             $table->string('address');
             $table->string('position');

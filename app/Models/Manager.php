@@ -18,6 +18,8 @@ class Manager extends Model
         'job_desc',
         'status',
         'salary',
+        'duty_type',
+        'department',
         'img',
         'pdf',
         'position'

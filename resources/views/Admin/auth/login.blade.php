@@ -53,8 +53,9 @@
         </form>
 
         @if (Route::has('password.request'))
-            <p class="mb-1">
+            <p class="mb-1 mt-3 d-flex justify-content-between">
                 <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                <a href="{{route('register')}}">{{ __('Create New Account') }}</a>
             </p>
         @endif
     </div>

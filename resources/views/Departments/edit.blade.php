@@ -29,12 +29,6 @@
                         <div class="inputs">
                             <input type="hidden" value="{{$depart->id}}" name="id" placeholder="Position Id" class="form-control mb-3 text-center">
                             <input type="text" name="name" placeholder="Department Name" value="{{$depart->name}}" class="form-control mb-3">
-                            <select name="manager_name" class="form-control custom_select mb-3">
-                                <option selected>Choose Manager</option>
-                                @foreach ($manager as $manager)
-                                    <option value="{{$manager->name}}" {{$manager->name == $depart->manager_name ? 'selected' : ''}}>{{$manager->name}}</option>
-                                @endforeach
-                            </select>
                         </div>
                         <input type="submit" value="Update" class="btn btn-success text-right w-100 text-center">
                     </div>

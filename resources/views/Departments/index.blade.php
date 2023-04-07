@@ -30,7 +30,6 @@
                             <tr class="text-center">
                                 <td class="text-center">#</td>
                                 <td class="text-center">Department Name</td>
-                                <td class="text-center">Department Manager</td>
                                 <td>Actions</td>
                             </tr>
                         </thead>
@@ -40,7 +39,6 @@
                                     <tr>
                                         <td>{{$departments->id}}</td>
                                         <td>{{$departments->name}}</td>
-                                        <td>{{$departments->manager_name}}</td>
                                         <td>
                                             <a href="{{url("editdepartment/$departments->id")}}" class="btn btn-warning">Edit</a>
                                             <a href="{{url("deletedepartment/$departments->id")}}" class="btn btn-danger">Delete</a>
