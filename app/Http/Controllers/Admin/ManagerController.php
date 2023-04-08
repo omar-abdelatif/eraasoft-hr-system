@@ -40,6 +40,7 @@ class ManagerController extends Controller
             'job_desc' => 'required',
             'status' => 'required',
             'duty_type' => 'required|in:full_time,part_time',
+            'department' => 'required',
             'salary' => 'required',
             'pdf' => 'required|mimes:pdf|max:2048'
         ]);
@@ -65,6 +66,7 @@ class ManagerController extends Controller
             "status" => $request->status,
             "salary" => $request->salary,
             "img" => $name,
+            "department" => $request->department,
             "duty_type" => $request->duty_type,
             'position' => $request->position,
             'pdf' => $file_name
@@ -109,8 +111,10 @@ class ManagerController extends Controller
     }
     public function edit($id)
     {
+        $positions = Positon::all();
+        $depart = Department::all();
         $edit = Manager::find($id);
-        return view("Manager.edit", compact("edit"));
+        return view("Manager.edit", compact("edit", "depart", "positions"));
     }
     public function update(Request $request)
     {
@@ -153,6 +157,9 @@ class ManagerController extends Controller
         $manager->address = $request->address;
         $manager->job_desc = $request->job_desc;
         $manager->status = $request->status;
+        $manager->duty_type = $request->duty_type;
+        $manager->department = $request->department;
+        $manager->position = $request->position;
         $manager->salary = $request->salary;
         $update = $manager->save();
         if ($update) {
